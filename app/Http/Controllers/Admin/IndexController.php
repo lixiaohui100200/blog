@@ -39,16 +39,21 @@ class IndexController extends CommonController
     {
         if ($input = Input::all()){
             $rules = [
-                'password'=>'required',
+                'password_0' => 'required',
+                'password'=>'required|between:6,20|confirmed',
+
             ];
             $message = [
+                'password_0.required' => '原始密码不能为空',
                 'password.required' => '新密码不能为空',
+                'password.between' => '密码长度必须为6-20',
+                'password.confirmed' => '新密码两次输入不一致',
             ];
             $validator = Validator::make($input,$rules,$message);
             if ($validator->passes()){
                 echo 'yes';
             }else{
-                dd($validator->errors()->all());
+                return back()->withErrors($validator);
             }
         }else{
             return view('admin.pass');

@@ -11,12 +11,21 @@
 <div class="result_wrap">
     <div class="result_title">
         <h3>修改密码</h3>
+
     </div>
 </div>
 <!--结果集标题与导航组件 结束-->
 
 <div class="result_wrap">
     <form method="post" action="" >
+        <div >
+            @if(count($errors)>0)
+                @foreach($errors->all() as $a )
+                    <font color="red">{{$a}}</font><br />
+                @endforeach
+            @endif
+        </div>
+
         {{csrf_field()}}
         <table class="add_tab">
             <tbody>
@@ -35,7 +44,7 @@
             <tr>
                 <th><i class="require">*</i>确认密码：</th>
                 <td>
-                    <input type="password" name="password_"> </i>再次输入密码</span>
+                    <input type="password" name="password_confirmation"> </i>再次输入密码</span>
                 </td>
             </tr>
             <tr>
