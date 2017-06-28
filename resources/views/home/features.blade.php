@@ -46,7 +46,7 @@
 				<div class="feature-botttom">
 							<div class="col-md-6 fea-grid">
 								<div class="fea-img">
-									<img src="images/f1.jpg" alt="">
+									<img src="resources/views/home/images/f1.jpg" alt="">
 								</div>
 								<div class="fea-text">
 									<h4>Et iusto odio dignissimos</h4>
@@ -56,7 +56,7 @@
 							</div>
 							<div class="col-md-6 fea-grid">
 								<div class="fea-img">
-									<img src="images/m1.jpg" alt="">
+									<img src="resources/views/home/resources/views/home/images/m1.jpg" alt="">
 								</div>
 								<div class="fea-text">
 									<h4>Ducimus odio dignissimos</h4>
@@ -65,7 +65,7 @@
 							</div>
 							<div class="col-md-6 fea-grid">
 								<div class="fea-img">
-									<img src="images/t2.jpg" alt="">
+									<img src="resources/views/home/images/t2.jpg" alt="">
 								</div>
 								<div class="fea-text">
 									<h4>Et iusto odio dignissimos</h4>
@@ -75,7 +75,7 @@
 							</div>
 							<div class="col-md-6 fea-grid">
 								<div class="fea-img">
-									<img src="images/t3.jpg" alt="">
+									<img src="resources/views/home/images/t3.jpg" alt="">
 								</div>
 								<div class="fea-text">
 									<h4>Ducimus odio dignissimos</h4>
@@ -103,7 +103,7 @@
 					<h4>Popular Posts </h4>
 						<div class="blog-grids">
 							<div class="blog-grid-left">
-								<a href="singlepage.html"><img src="images/t2.jpg" class="img-responsive" alt=""></a>
+								<a href="singlepage.html"><img src="resources/views/home/images/t2.jpg" class="img-responsive" alt=""></a>
 							</div>
 							<div class="blog-grid-right">
 								
@@ -113,7 +113,7 @@
 						</div>
 						<div class="blog-grids">
 							<div class="blog-grid-left">
-								<a href="singlepage.html"><img src="images/m2.jpg" class="img-responsive" alt=""></a>
+								<a href="singlepage.html"><img src="resources/views/home/images/m2.jpg" class="img-responsive" alt=""></a>
 							</div>
 							<div class="blog-grid-right">
 								
@@ -123,7 +123,7 @@
 						</div>
 						<div class="blog-grids">
 							<div class="blog-grid-left">
-								<a href="singlepage.html"><img src="images/f2.jpg" class="img-responsive" alt=""></a>
+								<a href="singlepage.html"><img src="resources/views/home/images/f2.jpg" class="img-responsive" alt=""></a>
 							</div>
 							<div class="blog-grid-right">
 								
@@ -133,7 +133,7 @@
 						</div>
 						<div class="blog-grids">
 							<div class="blog-grid-left">
-								<a href="singlepage.html"><img src="images/t3.jpg" class="img-responsive" alt=""></a>
+								<a href="singlepage.html"><img src="resources/views/home/images/t3.jpg" class="img-responsive" alt=""></a>
 							</div>
 							<div class="blog-grid-right">
 								
@@ -143,7 +143,7 @@
 						</div>
 						<div class="blog-grids">
 							<div class="blog-grid-left">
-								<a href="singlepage.html"><img src="images/m3.jpg" class="img-responsive" alt=""></a>
+								<a href="singlepage.html"><img src="resources/views/home/images/m3.jpg" class="img-responsive" alt=""></a>
 							</div>
 							<div class="blog-grid-right">
 								
@@ -155,15 +155,15 @@
 					<h4>Instagram</h4>
 						<ul>
 							
-							<li><a href="singlepage.html"><img src="images/t1.jpg" class="img-responsive" alt=""></a></li>
-							<li><a href="singlepage.html"><img src="images/m1.jpg" class="img-responsive" alt=""></a></li>
-							<li><a href="singlepage.html"><img src="images/f1.jpg" class="img-responsive" alt=""></a></li>
-							<li><a href="singlepage.html"><img src="images/m2.jpg" class="img-responsive" alt=""></a></li>
-							<li><a href="singlepage.html"><img src="images/f2.jpg" class="img-responsive" alt=""></a></li>
-							<li><a href="singlepage.html"><img src="images/t2.jpg" class="img-responsive" alt=""></a></li>
-							<li><a href="singlepage.html"><img src="images/f3.jpg" class="img-responsive" alt=""></a></li>
-							<li><a href="singlepage.html"><img src="images/t3.jpg" class="img-responsive" alt=""></a></li>
-							<li><a href="singlepage.html"><img src="images/m3.jpg" class="img-responsive" alt=""></a></li>
+							<li><a href="singlepage.html"><img src="resources/views/home/images/t1.jpg" class="img-responsive" alt=""></a></li>
+							<li><a href="singlepage.html"><img src="resources/views/home/images/m1.jpg" class="img-responsive" alt=""></a></li>
+							<li><a href="singlepage.html"><img src="resources/views/home/images/f1.jpg" class="img-responsive" alt=""></a></li>
+							<li><a href="singlepage.html"><img src="resources/views/home/images/m2.jpg" class="img-responsive" alt=""></a></li>
+							<li><a href="singlepage.html"><img src="resources/views/home/images/f2.jpg" class="img-responsive" alt=""></a></li>
+							<li><a href="singlepage.html"><img src="resources/views/home/images/t2.jpg" class="img-responsive" alt=""></a></li>
+							<li><a href="singlepage.html"><img src="resources/views/home/images/f3.jpg" class="img-responsive" alt=""></a></li>
+							<li><a href="singlepage.html"><img src="resources/views/home/images/t3.jpg" class="img-responsive" alt=""></a></li>
+							<li><a href="singlepage.html"><img src="resources/views/home/images/m3.jpg" class="img-responsive" alt=""></a></li>
 						</ul>
 					</div>
 					
