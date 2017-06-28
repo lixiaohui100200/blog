@@ -53,14 +53,14 @@
                 <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
                     <nav class="link-effect-7" id="link-effect-7">
                         <ul class="nav navbar-nav">
-                            <li @if($_SERVER['REQUEST_URI']=='/') class="active act" @endif><a href="{{url('/')}}">Home</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/about') class="active act" @endif><a href="{{url('/about')}}">About</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/features') class="active act" @endif><a href="{{url('/features')}}">Features</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/travel') class="active act" @endif><a href="{{url('/travel')}}">Travel</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/fashion') class="active act" @endif><a href="{{url('/fashion')}}">Fashion</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/music') class="active act" @endif><a href="{{url('/music')}}">Music</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/codes') class="active act" @endif><a href="{{url('/codes')}}">Codes</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/contact') class="active act" @endif><a href="{{url('/contact')}}">Contact</a></li>
+                            <li @if($_SERVER['REQUEST_URI']=='/') class="active act" @endif><a href="{{url('/')}}">首页</a></li>
+                            <li @if($_SERVER['REQUEST_URI']=='/about') class="active act" @endif><a href="{{url('/about')}}">关于</a></li>
+                            <li @if($_SERVER['REQUEST_URI']=='/features') class="active act" @endif><a href="{{url('/features')}}">特点</a></li>
+                            <li @if($_SERVER['REQUEST_URI']=='/travel') class="active act" @endif><a href="{{url('/travel')}}">旅游</a></li>
+                            <li @if($_SERVER['REQUEST_URI']=='/fashion') class="active act" @endif><a href="{{url('/fashion')}}">时尚</a></li>
+                            <li @if($_SERVER['REQUEST_URI']=='/music') class="active act" @endif><a href="{{url('/music')}}">音乐</a></li>
+                            <li @if($_SERVER['REQUEST_URI']=='/codes') class="active act" @endif><a href="{{url('/codes')}}">代码</a></li>
+                            <li @if($_SERVER['REQUEST_URI']=='/contact') class="active act" @endif><a href="{{url('/contact')}}">联系</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -84,8 +84,8 @@
 <div class="header-bottom">
     <div class="container">
         <div class="logo wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
-            <h1><a href="index.html">STYLE BLOG</a></h1>
-            <p><label class="of"></label>LET'S MAKE A PERFECT STYLE<label class="on"></label></p>
+            <h1><a href="{{url('/')}}">GATLIN BLOG</a></h1>
+            <p><label class="of"></label>冒蓝光的哒！哒！哒！哒！哒。。。<label class="on"></label></p>
         </div>
     </div>
 </div>

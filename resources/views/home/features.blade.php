@@ -56,7 +56,7 @@
 							</div>
 							<div class="col-md-6 fea-grid">
 								<div class="fea-img">
-									<img src="resources/views/home/resources/views/home/images/m1.jpg" alt="">
+									<img src="/resources/views/home/images/m1.jpg" alt="">
 								</div>
 								<div class="fea-text">
 									<h4>Ducimus odio dignissimos</h4>

@@ -21,11 +21,14 @@ Route::get('/music', 'Home\MusicController@index');
 Route::get('/travel', 'Home\FashionController@index');
 Route::get('/single', 'Home\SingleController@index');
 //后台
+Route::group(['middleware'=>['web','admin.login']],function (){
+
+    Route::get('admin/index','Admin\IndexController@index');
+    Route::get('admin/info','Admin\IndexController@info');
+    Route::get('admin/add','Admin\IndexController@add');
+    Route::get('admin/lst','Admin\IndexController@lst');
+});
 Route::any('admin/login','Admin\LoginController@login');
 Route::get('admin/code','Admin\LoginController@code');
-Route::get('admin/index','Admin\IndexController@index');
-Route::get('admin/info','Admin\IndexController@info');
-Route::get('admin/add','Admin\IndexController@add');
-Route::get('admin/lst','Admin\IndexController@lst');
 
 
