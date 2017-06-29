@@ -11,7 +11,7 @@ class CateController extends Controller
 {
     public function add()
     {
-        if ($input=Input::all()){
+        if ($input=Input::except('_token')){
             dd($input);
            if (DB::table('cate')->insert($input)){
                 echo 11;
