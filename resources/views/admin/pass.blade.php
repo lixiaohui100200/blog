@@ -20,10 +20,13 @@
     <form method="post" action="" >
         <div >
             @if(count($errors)>0)
-                @foreach($errors->all() as $a )
-                    <font color="red">{{$a}}</font><br />
+                @foreach($errors->all() as $error )
+                    <font color="red">{{$error}}</font><br />
                 @endforeach
             @endif
+            @if(session('msg'))
+                    <font color="red">{{session('msg')}}</font><br />
+                @endif
         </div>
 
         {{csrf_field()}}
