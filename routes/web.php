@@ -25,8 +25,10 @@ Route::group(['middleware'=>['web','admin.login']],function (){
 
     Route::get('admin/index','Admin\IndexController@index');
     Route::get('admin/info','Admin\IndexController@info');
-    Route::get('admin/add','Admin\IndexController@add');
-    Route::get('admin/lst','Admin\IndexController@lst');
+   /* Route::get('admin/add','Admin\IndexController@add');*/
+    /*Route::get('admin/lst','Admin\IndexController@lst');*/
+    //文章分类
+    Route::any('admin/add','Admin\CateController@add');
     //退出登录
     Route::get('admin/out','Admin\IndexController@out');
     Route::any('admin/pass','Admin\IndexController@pass');
