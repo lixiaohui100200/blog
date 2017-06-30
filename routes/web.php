@@ -29,6 +29,10 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     /*Route::get('admin/lst','Admin\IndexController@lst');*/
     //文章分类
     Route::any('admin/add','Admin\CateController@add');
+    //文章分类列表
+    Route::any('admin/list','Admin\CateController@lst');
+    //ajax文章修改排序
+    Route::post('admin/changeorder','Admin\CateController@changeorder');
     //退出登录
     Route::get('admin/out','Admin\IndexController@out');
     Route::any('admin/pass','Admin\IndexController@pass');

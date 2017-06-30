@@ -59,72 +59,32 @@
                         <th class="tc">排序</th>
                         <th class="tc">ID</th>
                         <th>标题</th>
-                        <th>审核状态</th>
-                        <th>点击</th>
-                        <th>发布人</th>
-                        <th>更新时间</th>
-                        <th>评论</th>
+                        <th>title</th>
+                        <th>关键字</th>
+                        <th>关键字描述</th>
+                        <th>点击量</th>
                         <th>操作</th>
                     </tr>
+                    @foreach($data as $v)
                     <tr>
-                        <td class="tc"><input type="checkbox" name="id[]" value="59"></td>
+                        <td class="tc"><input type="checkbox"  name="id[]" value="59"></td>
                         <td class="tc">
-                            <input type="text" name="ord[]" value="0">
+                            <input type="text" onchange="change()" name="ord[]" value="{{$v->cate_order}}">
                         </td>
-                        <td class="tc">59</td>
+                        <td class="tc">{{$v->cate_id}}</td>
                         <td>
-                            <a href="#">Apple iPhone 6 Plus (A1524) 16GB 金色 移动联通电信4G手机</a>
+                            <a href="#">{{$v->_cate_name}}</a>
                         </td>
-                        <td>0</td>
-                        <td>2</td>
-                        <td>admin</td>
-                        <td>2014-03-15 21:11:01</td>
-                        <td></td>
+                        <td>{{$v->cate_title}}</td>
+                        <td>{{$v->cate_keywords}}</td>
+                        <td>{{$v->cate_discription}}</td>
+                        <td>{{$v->cate_view}}</td>
                         <td>
                             <a href="#">修改</a>
                             <a href="#">删除</a>
                         </td>
                     </tr>
-                    
-                    <tr>
-                        <td class="tc"><input type="checkbox" name="id[]" value="59"></td>
-                        <td class="tc">
-                            <input type="text" name="ord[]" value="0">
-                        </td>
-                        <td class="tc">59</td>
-                        <td>
-                            <a href="#">三星 SM-G5308W 白色 移动4G手机 双卡双待</a>
-                        </td>
-                        <td>0</td>
-                        <td>2</td>
-                        <td>admin</td>
-                        <td>2014-03-15 21:11:01</td>
-                        <td></td>
-                        <td>
-                            <a href="#">修改</a>
-                            <a href="#">删除</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="tc"><input type="checkbox" name="id[]" value="59"></td>
-                        <td class="tc">
-                            <input type="text" name="ord[]" value="0">
-                        </td>
-                        <td class="tc">59</td>
-                        <td>
-                            <a href="#">荣耀 6 (H60-L11) 3GB内存增强版 白色 移动4G手机</a>
-                        </td>
-                        <td>0</td>
-                        <td>2</td>
-                        <td>admin</td>
-                        <td>2014-03-15 21:11:01</td>
-                        <td></td>
-                        <td>
-                            <a href="#">修改</a>
-                            <a href="#">删除</a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </table>
 
 
@@ -161,7 +121,13 @@
     </form>
     <!--搜索结果页面 列表 结束-->
 
-
+    <script>
+        function change() {
+            $.post("{{url('admin/changeorder')}}",{'_token':'{{csrf_token()}}'},function () {
+                
+            })
+        }
+    </script>
 
 </body>
 </html>
