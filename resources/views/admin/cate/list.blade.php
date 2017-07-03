@@ -6,12 +6,13 @@
 	<link rel="stylesheet" href="{{asset('resources/views/admin/style/font/css/font-awesome.min.css')}}">
     <script type="text/javascript" src="{{asset('resources/views/admin/style/js/jquery.js')}}"></script>
     <script type="text/javascript" src="{{asset('resources/views/admin/style/js/ch-ui.admin.js')}}"></script>
+    <script type="text/javascript" src="{{asset('resources/org/layer/layer.js')}}"></script>
 </head>
 <body>
     <!--面包屑导航 开始-->
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-        <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; <a href="#">商品管理</a> &raquo; 添加商品
+        <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 分类列表
     </div>
     <!--面包屑导航 结束-->
 
@@ -43,9 +44,9 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="#"><i class="fa fa-plus"></i>新增文章</a>
+                    <a href="{{url('admin/cateAdd')}}"><i class="fa fa-plus"></i>新增文章</a>
                     <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
-                    <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
+                    <a href="{{url('admin/list')}}"><i class="fa fa-refresh"></i>更新排序</a>
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -69,7 +70,7 @@
                     <tr>
                         <td class="tc"><input type="checkbox"  name="id[]" value="59"></td>
                         <td class="tc">
-                            <input type="text" onchange="change()" name="ord[]" value="{{$v->cate_order}}">
+                            <input type="text" onchange="change(this,{{$v->cate_id}})" name="ord[]" value="{{$v->cate_order}}">
                         </td>
                         <td class="tc">{{$v->cate_id}}</td>
                         <td>
@@ -88,7 +89,7 @@
                 </table>
 
 
-<div class="page_nav">
+{{--<div class="page_nav">
 <div>
 <a class="first" href="/wysls/index.php/Admin/Tag/index/p/1.html">第一页</a> 
 <a class="prev" href="/wysls/index.php/Admin/Tag/index/p/7.html">上一页</a> 
@@ -100,12 +101,11 @@
 <a class="next" href="/wysls/index.php/Admin/Tag/index/p/9.html">下一页</a> 
 <a class="end" href="/wysls/index.php/Admin/Tag/index/p/11.html">最后一页</a> 
 <span class="rows">11 条记录</span>
+
+
 </div>
-</div>
-
-
-
-                <div class="page_list">
+</div>--}}
+{{--                <div class="page_list">
                     <ul>
                         <li class="disabled"><a href="#">&laquo;</a></li>
                         <li class="active"><a href="#">1</a></li>
@@ -115,16 +115,22 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">&raquo;</a></li>
                     </ul>
-                </div>
+                </div>--}}
             </div>
         </div>
     </form>
     <!--搜索结果页面 列表 结束-->
 
     <script>
-        function change() {
-            $.post("{{url('admin/changeorder')}}",{'_token':'{{csrf_token()}}'},function () {
-                
+        function change(obj,cate_id) {
+            var cate_order = $(obj).val();
+            $.post("{{url('admin/changeorder')}}",{'_token':'{{csrf_token()}}','cate_order':cate_order,'cate_id':cate_id},
+                    function (data) {
+                if(data.state == 1){
+                    layer.alert(data.msg, {icon: 6});
+                }else{
+                    layer.alert(data.msg, {icon: 5});
+                }
             })
         }
     </script>
