@@ -46,7 +46,12 @@
                             <select name="cate_pid">
                                 <option value="0">==顶级分类==</option>
                                 @foreach($data as $v)
-                                <option value="{{$v->cate_id}}">{{$v->cate_name}}</option>
+                                    @foreach($data1 as $v1)
+                                <option value="{{$v1->cate_id}}"
+                                        @if($v1->cate_id==$v->cate_pid)selected
+                                            @endif
+                                >{{$v1->cate_name}}</option>
+                                        @endforeach
                                 @endforeach
                             </select>
                         </td>
@@ -54,32 +59,32 @@
                     <tr>
                         <th><i class="require">*</i>分类名称：</th>
                         <td>
-                            <input type="text" name="cate_name">
+                            <input type="text" value="{{$v->cate_name}}" name="cate_name">
 
                         </td>
                     </tr>
                     <tr>
                         <th>分类标题：</th>
                         <td>
-                            <input type="text" class="lg" name="cate_title">
+                            <input type="text" value="{{$v->cate_title}}" class="lg" name="cate_title">
                         </td>
                     </tr>
                     <tr>
                         <th>关键词：</th>
                         <td>
-                            <textarea name="cate_keywords"></textarea>
+                            <textarea name="cate_keywords">{{$v->cate_keywords}}</textarea>
                         </td>
                     </tr>
                     <tr>
                         <th>关键词描述：</th>
                         <td>
-                            <textarea name="cate_discription"></textarea>
+                            <textarea name="cate_discription">{{$v->cate_discription}}</textarea>
                         </td>
                     </tr>
                     <tr>
                         <th>分类排序：</th>
                         <td>
-                            <input type="text" class="sm" name="cate_order">
+                            <input type="text" value="{{$v->cate_order}}" class="sm" name="cate_order">
                         </td>
                     </tr>
 

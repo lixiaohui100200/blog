@@ -44,7 +44,7 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="{{url('admin/cateAdd')}}"><i class="fa fa-plus"></i>新增文章</a>
+                    <a href="{{url('admin/add')}}"><i class="fa fa-plus"></i>新增分类</a>
                     <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
                     <a href="{{url('admin/list')}}"><i class="fa fa-refresh"></i>更新排序</a>
                 </div>
@@ -81,7 +81,7 @@
                         <td>{{$v->cate_discription}}</td>
                         <td>{{$v->cate_view}}</td>
                         <td>
-                            <a href="#">修改</a>
+                            <a href="{{url('admin/edit/'.$v->cate_id)}}">修改</a>
                             <a href="#">删除</a>
                         </td>
                     </tr>

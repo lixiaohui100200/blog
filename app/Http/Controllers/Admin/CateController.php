@@ -85,4 +85,21 @@ class CateController extends Controller
         }
         return $data;
     }
+    //修改分类
+    public function edit($cate_id)
+    {
+        if ($input = Input::except('_token')){
+            $re = DB::table('cate')->where('cate_id',$cate_id)->update($input);
+            if ($re){
+                echo "<script>alert('修改分类成功');location.href='".url('admin/list')."'</script>";
+            }else{
+                echo "<script>alert('修改分类失败');location.href='".url('admin/list')."'</script>";
+            }
+        }else{
+            $data = DB::table('cate')->where('cate_id',$cate_id)->get();
+            $data1 = DB::table('cate')->where('cate_pid',0)->get();
+            return view('admin.cate.edit')->with('data',$data)->with('data1',$data1);
+        }
+
+    }
 }
