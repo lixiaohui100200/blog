@@ -17,6 +17,13 @@
 	<div class="result_wrap">
         <div class="result_title">
             <h3>快捷操作</h3>
+            @if (count($errors) > 0)
+                <div class="mark">
+                    @foreach ($errors->all() as $error)
+                        <font color="red"><li>{{ $error }}</li></font>
+                    @endforeach
+                </div>
+            @endif
         </div>
         <div class="result_content">
             <div class="short_wrap">
@@ -27,7 +34,7 @@
         </div>
     </div>
     <!--结果集标题与导航组件 结束-->
-    
+
     <div class="result_wrap">
         <form action="" method="post">
             {{csrf_field()}}
@@ -52,25 +59,25 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><i class="require">*</i>分类标题：</th>
+                        <th>分类标题：</th>
                         <td>
                             <input type="text" class="lg" name="cate_title">
                         </td>
                     </tr>
                     <tr>
-                        <th><i class="require">*</i>关键词：</th>
+                        <th>关键词：</th>
                         <td>
                             <textarea name="cate_keywords"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <th><i class="require">*</i>关键词描述：</th>
+                        <th>关键词描述：</th>
                         <td>
                             <textarea name="cate_discription"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <th><i class="require">*</i>分类排序：</th>
+                        <th>分类排序：</th>
                         <td>
                             <input type="text" class="sm" name="cate_order">
                         </td>
