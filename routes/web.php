@@ -42,7 +42,14 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     /*
      *分类结束
      */
-
+    /*
+     *文章url开始
+     */
+    //添加文章
+    Route::any('admin/artAdd','Admin\ArtController@add');
+    /*
+     *文章url结束
+     */
     Route::any('admin/pass','Admin\IndexController@pass');
     //退出登录
     Route::get('admin/out','Admin\IndexController@out');
