@@ -4,9 +4,12 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="{{asset('resources/views/admin/style/css/ch-ui.admin.css')}}">
 	<link rel="stylesheet" href="{{asset('resources/views/admin/style/font/css/font-awesome.min.css')}}">
+    <script type="text/javascript" charset="utf-8" src="{{asset('resources/views/admin/style/js/jquery.js')}}"></script>
     <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/ueditor.config.js')}}"></script>
     <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/ueditor.all.min.js')}}"> </script>
     <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
+    <script src="{{asset('resources/org/uploadify/jquery.uploadify.min.js')}}" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/uploadify.css')}}">
 
 </head>
 <body>
@@ -79,10 +82,33 @@
 
                         </td>
                     </tr>
+
                     <tr>
                         <th>缩略图：</th>
                         <td>
+                            <div id="queue"></div>
                             <input type="text" class="sm" name="cate_order">
+                            <input id="file_upload" name="file_upload" type="file" multiple="true">
+
+                            <script type="text/javascript">
+                                <?php $timestamp = time();?>
+                                $(function() {
+                                    $('#file_upload').uploadify({
+                                        'buttonText' : '图片上传',
+                                        'formData'     : {
+                                            'timestamp' : '<?php echo $timestamp;?>',
+                                            'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+                                        },
+                                        'swf'      : "{{asset('resources/org/uploadify/uploadify.swf')}}",
+                                        'uploader' : "{{asset('resources/org/uploadify/uploadify.php')}}"
+                                    });
+                                });
+                            </script>
+                            <style>
+                                .uploadify{display:inline-block;}
+                                .uploadify-button{border:none; border-radius:5px; margin-top:8px;}
+                                table.add_tab tr td span.uploadify-button-text{color: #FFF; margin:0;}
+                            </style>
                         </td>
                     </tr>
                     <tr>
