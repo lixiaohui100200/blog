@@ -75,7 +75,7 @@ class CateController extends Controller
         if ($re){
             $data = [
               'state' => '1',
-                'msg' => '排序更新成功，请手动刷新界面'
+                'msg' => '排序更新成功'
             ];
         }else{
             $data = [
@@ -101,5 +101,23 @@ class CateController extends Controller
             return view('admin.cate.edit')->with('data',$data)->with('data1',$data1);
         }
 
+    }
+
+    public function del($cate_id)
+    {
+        $re = DB::table('cate')->where('cate_id',$cate_id)->delete();
+        DB::table('cate')->where('cate_pid',$cate_id)->update(['cate_pid'=>0]);
+        if ($re){
+            $data = [
+                'state' => '1',
+                'msg' =>'删除分类成功'
+            ];
+        }else{
+            $data = [
+                'state' => '0',
+                'msg' =>'删除分类失败'
+            ];
+        }
+        return $data;
     }
 }

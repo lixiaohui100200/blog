@@ -25,17 +25,27 @@ Route::group(['middleware'=>['web','admin.login']],function (){
 
     Route::get('admin/index','Admin\IndexController@index');
     Route::get('admin/info','Admin\IndexController@info');
+
+    /*
+    *分类url开始
+    */
     //添加文章分类
     Route::any('admin/add','Admin\CateController@add');
     //文章分类列表
     Route::any('admin/list','Admin\CateController@lst');
     //ajax文章修改排序
     Route::post('admin/changeorder','Admin\CateController@changeorder');
-    //退出登录
-    Route::get('admin/out','Admin\IndexController@out');
     //修改文章分类
     Route::any('admin/edit/{cate_id}','Admin\CateController@edit');
+    //删除分类
+    Route::any('admin/del/{cate_id}','Admin\CateController@del');
+    /*
+     *分类结束
+     */
+
     Route::any('admin/pass','Admin\IndexController@pass');
+    //退出登录
+    Route::get('admin/out','Admin\IndexController@out');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::get('admin/code','Admin\LoginController@code');

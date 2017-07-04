@@ -28,7 +28,6 @@
         <div class="result_content">
             <div class="short_wrap">
                 <a href="{{url('admin/add')}}"><i class="fa fa-plus"></i>新增分类</a>
-                <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
                {{-- <a href="{{url('admin/list')}}"><i class="fa fa-refresh"></i>更新排序</a>--}}
             </div>
         </div>
