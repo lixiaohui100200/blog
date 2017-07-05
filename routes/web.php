@@ -47,6 +47,8 @@ Route::group(['middleware'=>['web','admin.login']],function (){
      */
     //添加文章
     Route::any('admin/artAdd','Admin\ArtController@add');
+    //图片上传方法
+    Route::any('admin/upload','Admin\CommonController@upload');
     /*
      *文章url结束
      */

@@ -87,8 +87,9 @@
                         <th>缩略图：</th>
                         <td>
                             <div id="queue"></div>
-                            <input type="text" class="sm" name="cate_order">
+                            <input type="text" class="sm" name="art_image">
                             <input id="file_upload" name="file_upload" type="file" multiple="true">
+                            <img src=""  id="art_image1" width="50px" style="display:none">
 
                             <script type="text/javascript">
                                 <?php $timestamp = time();?>
@@ -97,10 +98,16 @@
                                         'buttonText' : '图片上传',
                                         'formData'     : {
                                             'timestamp' : '<?php echo $timestamp;?>',
-                                            'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+                                            '_token'     : '{{csrf_token()}}'
                                         },
                                         'swf'      : "{{asset('resources/org/uploadify/uploadify.swf')}}",
-                                        'uploader' : "{{asset('resources/org/uploadify/uploadify.php')}}"
+                                        'uploader' : "{{url('admin/upload')}}",
+                                        'onUploadSuccess' : function(file, data, response) {
+                                            $('input[name=art_image]').val(data);
+                                            $('#art_image1').attr('src','/'+data).css({
+                                                'display':'block'
+                                            });
+                                        }
                                     });
                                 });
                             </script>
@@ -138,5 +145,6 @@
 </body>
 <script type="text/javascript">
     var ue = UE.getEditor('editor');
+
 </script>
 </html>
