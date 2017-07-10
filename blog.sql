@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-07-04 19:02:04
+Date: 2017-07-10 19:12:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -50,11 +50,14 @@ CREATE TABLE `blog_article` (
   `art_content` text,
   `cate_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`art_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_article
 -- ----------------------------
+INSERT INTO `blog_article` VALUES ('1', '乐视体育乐视体育', '乐视体育乐视体育', '乐视体育乐视体育', '123', '2017-07-10 11:16:40', 'uploads/20170710111632154.jpg', '离', '<p>撒的发达</p>', '23');
+INSERT INTO `blog_article` VALUES ('2', '乐视体育222', '乐视体育222', '乐视体育222', '2433', '2017-07-10 11:47:21', 'uploads/20170710114715109.jpg', '333', '<p>乐视体育222乐视体育222</p>', '23');
+INSERT INTO `blog_article` VALUES ('3', 'PHP是世界上最好的语言', 'PHP是世界上最好的语言', 'PHP是世界上最好的语言', '333', '2017-07-10 16:27:29', 'uploads/20170710162721778.jpg', '李晓辉', '<p>撒的发发</p>', '9');
 
 -- ----------------------------
 -- Table structure for blog_cate
@@ -70,18 +73,19 @@ CREATE TABLE `blog_cate` (
   `cate_order` int(10) DEFAULT NULL,
   `cate_pid` int(11) DEFAULT '0',
   PRIMARY KEY (`cate_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_cate
 -- ----------------------------
-INSERT INTO `blog_cate` VALUES ('1', '体育', '体育很哈啊', '体育，乒乓球', '描述还是不错的', '0', '1', '0');
+INSERT INTO `blog_cate` VALUES ('1', '体育', '体育很哈啊', '体育，乒乓球', '描述还是不错的', '0', '5', '0');
 INSERT INTO `blog_cate` VALUES ('2', '娱乐', '娱乐大家来玩啊 ', '大保健', '描述还是不错的', '0', '1', '0');
-INSERT INTO `blog_cate` VALUES ('3', 'PHP', '世界上最好的语言', 'PHP,MYSQL,AJAX', '描述还是不错的', '0', '2', '0');
+INSERT INTO `blog_cate` VALUES ('3', 'PHP', '世界上最好的语言', 'PHP,MYSQL,AJAX', '描述还是不错的', '0', '5', '0');
 INSERT INTO `blog_cate` VALUES ('5', '体育1', '体育1体育1体育1体育1', '体育1体育1体育1', '体育1体育1体育1', '0', '2', '1');
-INSERT INTO `blog_cate` VALUES ('6', '体育2', '体育2体育2体育2体育2', '体育2体育2体育2体育2', '体育2体育2体育2体育2体育2', '0', '1', '1');
-INSERT INTO `blog_cate` VALUES ('7', '娱乐1', '娱乐1娱乐1娱乐1娱乐1', '娱乐1娱乐1娱乐1', '娱乐1娱乐1娱乐1', '0', '2', '2');
-INSERT INTO `blog_cate` VALUES ('8', '娱乐2', '娱乐2娱乐2娱乐2娱乐2', '娱乐2娱乐2娱乐2娱乐2', '娱乐2娱乐2娱乐2娱乐2', '0', '1', '2');
+INSERT INTO `blog_cate` VALUES ('6', '体育2', '体育2体育2体育2体育2', '体育2体育2体育2体育2', '体育2体育2体育2体育2体育2', '0', '3', '1');
+INSERT INTO `blog_cate` VALUES ('7', '娱乐1', '娱乐1娱乐1娱乐1娱乐1', '娱乐1娱乐1娱乐1', '娱乐1娱乐1娱乐1', '0', '1', '2');
+INSERT INTO `blog_cate` VALUES ('8', '娱乐2', '娱乐2娱乐2娱乐2娱乐2', '娱乐2娱乐2娱乐2娱乐2', '娱乐2娱乐2娱乐2娱乐2', '0', '3', '2');
 INSERT INTO `blog_cate` VALUES ('9', 'PHP1', 'PHP1PHP1PHP1PHP1', 'PHP1PHP1PHP1PHP1', 'PHP1PHP1PHP1PHP1', '0', '2', '3');
 INSERT INTO `blog_cate` VALUES ('10', 'PHP2', 'PHP2PHP2PHP2PHP2', 'PHP2PHP2PHP2PHP2', 'PHP2PHP2PHP2', '0', '1', '3');
-INSERT INTO `blog_cate` VALUES ('16', 'CCTV5', '中国最大的体育频道', '体育，新闻，杜兰特，NBA', '好好好', '0', '1', '1');
+INSERT INTO `blog_cate` VALUES ('16', 'CCTV5', '中国最大的体育频道', '体育，新闻，杜兰特，NBA', '好好好', '0', '2', '1');
+INSERT INTO `blog_cate` VALUES ('23', '乐视体育', '2222', '2222', '222', '0', '1', '1');
