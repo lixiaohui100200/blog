@@ -16,18 +16,18 @@ class CateController extends Controller
         if ($input = Input::except('_token')){
             $rules =[
                 'cate_name' => 'required',
+                'cate_order'=>'integer'
             ];
             $message = [
-                'cate_name.required' => '分类名称不允许为空'
+                'cate_name.required' => '分类名称不允许为空',
+                'cate_order.integer' => '排序必须填写整数',
             ];
 
             $validator = Validator::make($input,$rules,$message);
             if($validator->passes()){
                 $re = DB::table('cate')->insert($input);
                 if ($re){
-
                     echo "<script>alert('分类添加成功');location.href='".url('admin/list')."'</script>";
-
                 }else{
                     echo "<script>alert('分类添加失败');location.href='".url('admin/list')."'</script>";
                 }

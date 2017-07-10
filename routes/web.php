@@ -22,10 +22,8 @@ Route::get('/travel', 'Home\FashionController@index');
 Route::get('/single', 'Home\SingleController@index');
 //后台
 Route::group(['middleware'=>['web','admin.login']],function (){
-
     Route::get('admin/index','Admin\IndexController@index');
     Route::get('admin/info','Admin\IndexController@info');
-
     /*
     *分类url开始
     */
@@ -49,6 +47,10 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/artAdd','Admin\ArtController@add');
     //图片上传方法
     Route::any('admin/upload','Admin\CommonController@upload');
+    //文章列表页
+    Route::any('admin/artList','Admin\ArtController@lst');
+    //文章修改
+    Route::any('admin/artEdit/{art_id}','Admin\ArtController@edit');
     /*
      *文章url结束
      */

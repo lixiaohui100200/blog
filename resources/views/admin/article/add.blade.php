@@ -49,8 +49,8 @@
                     <tr>
                         <th width="120"><i class="require">*</i>文章分类：</th>
                         <td>
-                            <select name="cate_pid">
-                                <option >==选择分类==</option>
+                            <select name="cate_id">
+                                <option value="哒哒哒">==选择分类==</option>
                                 @foreach($data as $v)
                                 <option value="{{$v->cate_id}}">{{$v->cate_name}}</option>
                                 @endforeach
@@ -60,25 +60,25 @@
                     <tr>
                         <th><i class="require">*</i>文章标题：</th>
                         <td>
-                            <input type="text" class="lg" name="cate_title">
+                            <input type="text" class="lg" name="art_title">
                         </td>
                     </tr>
                     <tr>
                         <th>关键词：</th>
                         <td>
-                            <textarea name="cate_keywords"></textarea>
+                            <textarea name="art_keywords"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <th>关键词描述：</th>
                         <td>
-                            <textarea name="cate_discription"></textarea>
+                            <textarea name="art_discription"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <th>点击量：</th>
                         <td>
-                            <input type="text" name="cate_name">
+                            <input type="text" name="art_view">
 
                         </td>
                     </tr>
@@ -102,6 +102,7 @@
                                         },
                                         'swf'      : "{{asset('resources/org/uploadify/uploadify.swf')}}",
                                         'uploader' : "{{url('admin/upload')}}",
+                                        'fileTypeExts' : '*.gif; *.jpg; *.png; *.jpeg',
                                         'onUploadSuccess' : function(file, data, response) {
                                             $('input[name=art_image]').val(data);
                                             $('#art_image1').attr('src','/'+data).css({
@@ -121,13 +122,13 @@
                     <tr>
                         <th>作者：</th>
                         <td>
-                            <input type="text" class="sm" name="cate_order">
+                            <input type="text" class="sm" name="art_editor">
                         </td>
                     </tr>
                     <tr>
                         <th>详细内容：</th>
                         <td>
-                            <script id="editor" type="text/plain" style="width:1024px;height:200px;"></script>
+                            <script id="editor" type="text/plain" name="art_content" style="width:1024px;height:200px;"></script>
                         </td>
                     </tr>
 
