@@ -73,9 +73,6 @@
                     </tr>
                     @endforeach
                 </table>
-
-
-
                 <div class="page_list">
                     {{ $data->links() }}
                 </div>
