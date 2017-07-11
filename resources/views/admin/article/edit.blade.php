@@ -10,6 +10,7 @@
     <script type="text/javascript" charset="utf-8" src="{{asset('resources/org/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
     <script src="{{asset('resources/org/uploadify/jquery.uploadify.min.js')}}" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/uploadify.css')}}">
+    <script type="text/javascript" src="{{asset('resources/org/layer/layer.js')}}"></script>
 
 </head>
 <body>
@@ -140,7 +141,7 @@
                     @endforeach
                     <th></th>
                         <td>
-                            <input type="submit" value="提交">
+                            <input type="button" id="artEdit" value="提交">
                             <input type="button" class="back" onclick="history.go(-1)" value="返回">
                         </td>
                     </tr>
@@ -152,6 +153,28 @@
 </body>
 <script type="text/javascript">
     var ue = UE.getEditor('editor');
+    $('#artEdit').click(function(){
+        $.post('{{$_SERVER['REQUEST_URI']}}',
+                $('form').serialize(),
+                function (data) {
+                    if(data.state==200){
+                        layer.msg(data.msg, {icon: 1});
+                        setTimeout(function () {
+                            location.href="{{url('admin/artList')}}"
+                        },2000)
+                    }else{
+                        layer.msg(data.msg, {icon: 2});
+                        setTimeout(function () {
+                            location.href="{{url('admin/artList')}}"
+                        },2000)
+                    }
+
+                }
+        );
+    })
+
+
+
 
 </script>
 </html>

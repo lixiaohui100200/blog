@@ -67,7 +67,7 @@
                         <td><img src="{{asset('/')}}{{$v->art_image}}" alt="" width="60px" height="50px"></td>
                         <td>{{$v->art_editor}}</td>
                         <td>
-                            <a href="{{url('admin/artEdit/'.$v->art_id)}}">修改</a>
+                            <a href="{{url('admin/artEdit/'.$v->art_id)}}" >修改</a>
                             <a href="javascript:;" onclick="">删除</a>
                         </td>
                     </tr>
@@ -80,40 +80,6 @@
         </div>
     </form>
     <!--搜索结果页面 列表 结束-->
-
-    <script>
-        function change(obj,cate_id) {
-            var cate_order = $(obj).val();
-            $.post("{{url('admin/changeorder')}}",{'_token':'{{csrf_token()}}','cate_order':cate_order,'cate_id':cate_id},
-                    function (data) {
-                if(data.state == 1){
-                    location.href=location.href;
-                    layer.alert(data.msg, {icon: 6});
-                }else{
-                    layer.alert(data.msg, {icon: 5});
-                }
-            })
-        }
-        function delCate(cate_id) {
-            layer.confirm('你确定要删除分类吗？', {
-                btn: ['确定','取消'] //按钮
-            }, function(){
-                    $.post("{{url('admin/del/')}}/"+cate_id,{'_token':'{{csrf_token()}}'},function (data) {
-                        if (data.state==1){
-                            location.href=location.href;
-                            layer.msg(data.msg, {icon: 1});
-                        }else {
-                            layer.msg(data.msg, {icon: 1});
-                        }
-                    });
-                }, function(){
-                    /*layer.msg('也可以这样', {
-                        time: 20000, //20s后自动关闭
-                        btn: ['明白了', '知道了']
-                    });*/
-            });
-        }
-    </script>
     <style>
         .result_content ul li span {
             font-size: 15px;

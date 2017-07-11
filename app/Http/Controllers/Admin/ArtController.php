@@ -63,12 +63,18 @@ class ArtController extends Controller
             ];
             $validator = Validator::make($input,$rule,$message);
             if ($validator->passes()){
-                $re =  DB::table('article')->where()->insert($input);
+                $re =  DB::table('article')->where('art_id',$art_id)->update($input);
                 if ($re){
-                    echo "<script>alert('文章添加成功');location.href='".url('admin/artList')."'</script>";
+                    $data = [
+                        'state' => '200',
+                        'msg' => '文章修改成功'
+                    ];
                 }else{
-                    echo "<script>alert('文章添加失败');location.href='".url('admin/artAdd')."'</script>";
-                }
+                    $data = [
+                        'state' => '404',
+                        'msg' => '文章修改失败'
+                    ];                }
+                return $data;
             }else{
                 return back()->withErrors($validator);
             }
