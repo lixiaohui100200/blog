@@ -33,8 +33,7 @@
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
-                    <a href="{{url('admin/add')}}"><i class="fa fa-plus"></i>新增分类</a>
-                    <a href="{{url('admin/list')}}"><i class="fa fa-refresh"></i>更新排序</a>
+                    <a href="{{url('admin/artAdd')}}"><i class="fa fa-plus"></i>添加文章</a>
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -68,7 +67,7 @@
                         <td>{{$v->art_editor}}</td>
                         <td>
                             <a href="{{url('admin/artEdit/'.$v->art_id)}}" >修改</a>
-                            <a href="javascript:;" onclick="">删除</a>
+                            <a href="javascript:;" onclick="artDel('{{$v->art_id}}')">删除</a>
                         </td>
                     </tr>
                     @endforeach
@@ -86,5 +85,32 @@
             padding: 6px 12px;
         }
     </style>
+    <script>
+        function artDel(art_id) {
+            layer.confirm('确定要删除文章？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.post(
+                        '{{url('admin/artDel').'/'}}'+art_id,
+                        {'_token':'{{csrf_token()}}'},
+                        function (data) {
+                            if (data.state==200){
+                                layer.msg(data.msg, {icon: 1});
+                                setTimeout(function () {
+                                    location.href='{{url('admin/artList')}}'
+                                },1000)
+                            }else{
+                                layer.msg(data.msg, {icon: 2});
+                                setTimeout(function () {
+                                    location.href='{{url('admin/artList')}}'
+                                },1000)
+                            }
+
+                        }
+                );
+            });
+
+        }
+    </script>
 </body>
 </html>

@@ -51,6 +51,8 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/artList','Admin\ArtController@lst');
     //文章修改
     Route::any('admin/artEdit/{art_id}','Admin\ArtController@edit');
+    //文章删除
+    Route::any('admin/artDel/{art_id}','Admin\ArtController@del');
     /*
      *文章url结束
      */

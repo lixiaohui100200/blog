@@ -85,4 +85,23 @@ class ArtController extends Controller
         }
 
     }
+
+    public function del($art_id)
+    {
+        $filename = DB::table('article')->where('art_id',$art_id)->select('art_image')->first();
+        unlink($filename->art_image);
+        $re = DB::table('article')->where('art_id',$art_id)->delete();
+        if ($re){
+            $data = [
+                'state' => '200',
+                'msg' => '文章删除成功'
+            ];
+        }else{
+            $data = [
+                'state' => '404',
+                'msg' => '文章删除失败'
+            ];
+        }
+        return $data;
+    }
 }
