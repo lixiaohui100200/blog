@@ -15,26 +15,38 @@ class ArtController extends Controller
         if ($input = Input::except('_token')){
             $input['art_time'] = date('Y-m-d H:i:s');
             $rules = [
-                'art_pid' => 'integer',
+                'cate_id' => 'integer',
                 'art_title' => 'required',
                 'art_view' => 'integer',
             ];
             $messages = [
+                'cate_id.integer' => '文章分类不允许为空',
                 'art_title.required' => '标题填写不可以为空',
                 'art_view.integer' => '点击量填写必须为整数',
-                'art_pid.integer' => '文章分类不允许为空'
+
             ];
             $validator =  Validator::make($input,$rules,$messages);
             if ($validator->passes()){
                 $re =  DB::table('article')->insert($input);
                 if ($re){
-                    echo "<script>alert('文章添加成功');location.href='".url('admin/artList')."'</script>";
+                    $data = [
+                        'state' => '200',
+                        'msg' => '文章添加成功'
+                    ];
                 }else{
-                    echo "<script>alert('文章添加失败');location.href='".url('admin/artAdd')."'</script>";
+                    $data = [
+                        'state' => '400',
+                        'msg' => '文章添加失败'
+                    ];
                 }
+
             }else{
-                return back()->withErrors($validator);
+               return $data = [
+                   'state' => '11',
+                   'msg' => $validator->errors()->all(),
+               ];
             }
+            return $data;
         }else{
             $data = DB::table('cate')->where('cate_pid','!=',0)->select('cate_id','cate_name')->get();
             return view('admin.article.add')->with('data',$data);
@@ -44,7 +56,7 @@ class ArtController extends Controller
     //文章列表页
     public function lst()
     {
-        $data = DB::table('article')->paginate(2);
+        $data = DB::table('article')->orderBy('art_id','desc')->paginate(2);
         return view('admin.article.list')->with('data',$data);
     }
     //文章修改
