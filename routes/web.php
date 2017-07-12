@@ -11,9 +11,9 @@
 |
 */
 //前台
-Route::get('/', 'Home\IndexController@index');
+Route::any('/', 'Home\IndexController@index');
 Route::get('/about', 'Home\AboutController@index');
-Route::get('/features', 'Home\FeaturesController@index');
+Route::any('/features/{cate_id}', 'Home\FeaturesController@index');
 Route::get('/codes', 'Home\CodesController@index');
 Route::get('/contact', 'Home\ContactController@index');
 Route::get('/fashion', 'Home\FashionController@index');

@@ -23,6 +23,8 @@
 <body>
 <div class="header" id="ban">
     <div class="container">
+{{--
+//搜索位置
         <div class="head-left wow fadeInLeft animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
             <div class="header-search">
                 <div class="search">
@@ -37,6 +39,7 @@
                 </div>
             </div>
         </div>
+--}}
         <div class="header_right wow fadeInLeft animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
             <nav class="navbar navbar-default">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -55,7 +58,9 @@
                         <ul class="nav navbar-nav">
                             <li @if($_SERVER['REQUEST_URI']=='/') class="active act" @endif><a href="{{url('/')}}">首页</a></li>
                             <li @if($_SERVER['REQUEST_URI']=='/about') class="active act" @endif><a href="{{url('/about')}}">关于</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/features') class="active act" @endif><a href="{{url('/features')}}">特点</a></li>
+                            @foreach($cate as $v)
+                            <li @if($_SERVER['REQUEST_URI']=='/features/'.$v->cate_id) class="active act" @endif><a href="{{url('/features').'/'.$v->cate_id}}">{{$v->cate_name}}</a></li>
+                            @endforeach
                             <li @if($_SERVER['REQUEST_URI']=='/travel') class="active act" @endif><a href="{{url('/travel')}}">旅游</a></li>
                             <li @if($_SERVER['REQUEST_URI']=='/fashion') class="active act" @endif><a href="{{url('/fashion')}}">时尚</a></li>
                             <li @if($_SERVER['REQUEST_URI']=='/music') class="active act" @endif><a href="{{url('/music')}}">音乐</a></li>
@@ -67,6 +72,8 @@
                 <!-- /.navbar-collapse -->
             </nav>
         </div>
+{{--
+    分享位置
         <div class="nav navbar-nav navbar-right social-icons wow fadeInRight animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
             <ul>
                 <li><a href="#"> </a></li>
@@ -77,6 +84,7 @@
                 <li><a href="#" class="vimeo"> </a></li>
             </ul>
         </div>
+--}}
         <div class="clearfix"> </div>
     </div>
 </div>
