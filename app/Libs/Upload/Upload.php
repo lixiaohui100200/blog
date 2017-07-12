@@ -1,239 +1,419 @@
 <?php
-/**
-file: fileupload.class.php 文件上传类FileUpload
-本类的实例对象用于处理上传文件，可以上传一个文件，也可同时处理多个文件上传
- */
 class Upload {
-    private $path = "./uploads";          //上传文件保存的路径
-    private $allowtype = array('jpg','gif','png'); //设置限制上传文件的类型
-    private $maxsize = 1000000;           //限制文件上传大小（字节）
-    private $israndname = true;           //设置是否随机重命名文件， false不随机
-
-    private $originName;              //源文件名
-    private $tmpFileName;              //临时文件名
-    private $fileType;               //文件类型(文件后缀)
-    private $fileSize;               //文件大小
-    private $newFileName;              //新文件名
-    private $errorNum = 0;             //错误号
-    private $errorMess="";             //错误报告消息
+    /**
+     * 默认上传配置
+     * @var array
+     */
+    private $config = array(
+        'mimes'         =>  array(), //允许上传的文件MiMe类型
+        'maxSize'       =>  0, //上传的文件大小限制 (0-不做限制)
+        'exts'          =>  array(), //允许上传的文件后缀
+        'autoSub'       =>  true, //自动子目录保存文件
+        'subName'       =>  array('date', 'Y-m-d'), //子目录创建方式，[0]-函数名，[1]-参数，多个参数使用数组
+        'rootPath'      =>  './Upload/', //保存根路径
+        'savePath'      =>  '', //保存路径
+        'saveName'      =>  array('uniqid', ''), //上传文件命名规则，[0]-函数名，[1]-参数，多个参数使用数组
+        'saveExt'       =>  '', //文件保存后缀，空则使用原后缀
+        'replace'       =>  false, //存在同名是否覆盖
+        'hash'          =>  true, //是否生成hash编码
+        'callback'      =>  false, //检测文件是否存在回调，如果存在返回文件信息数组
+        'driver'        =>  '', // 文件上传驱动
+        'driverConfig'  =>  array(), // 上传驱动配置
+    );
 
     /**
-     * 用于设置成员属性（$path, $allowtype,$maxsize, $israndname）
-     * 可以通过连贯操作一次设置多个属性值
-     *@param  string $key  成员属性名(不区分大小写)
-     *@param  mixed  $val  为成员属性设置的值
-     *@return  object     返回自己对象$this，可以用于连贯操作
+     * 上传错误信息
+     * @var string
      */
-    function set($key, $val){
-        $key = strtolower($key);
-        if( array_key_exists( $key, get_class_vars(get_class($this) ) ) ){
-            $this->setOption($key, $val);
+    private $error = ''; //上传错误信息
+
+    /**
+     * 上传驱动实例
+     * @var Object
+     */
+    private $uploader;
+
+    /**
+     * 构造方法，用于构造上传实例
+     * @param array  $config 配置
+     * @param string $driver 要使用的上传驱动 LOCAL-本地上传驱动，FTP-FTP上传驱动
+     */
+    public function __construct($config = array(), $driver = '', $driverConfig = null){
+        /* 获取配置 */
+        $this->config   =   array_merge($this->config, $config);
+
+        /* 设置上传驱动 */
+        $this->setDriver($driver, $driverConfig);
+
+        /* 调整配置，把字符串配置参数转换为数组 */
+        if(!empty($this->config['mimes'])){
+            if(is_string($this->mimes)) {
+                $this->config['mimes'] = explode(',', $this->mimes);
+            }
+            $this->config['mimes'] = array_map('strtolower', $this->mimes);
         }
-        return $this;
+        if(!empty($this->config['exts'])){
+            if (is_string($this->exts)){
+                $this->config['exts'] = explode(',', $this->exts);
+            }
+            $this->config['exts'] = array_map('strtolower', $this->exts);
+        }
     }
 
     /**
-     * 调用该方法上传文件
-     * @param  string $fileFile  上传文件的表单名称
-     * @return bool        如果上传成功返回数true
+     * 使用 $this->name 获取配置
+     * @param  string $name 配置名称
+     * @return multitype    配置值
      */
+    public function __get($name) {
+        return $this->config[$name];
+    }
 
-    function upload($fileField) {
-        $return = true;
-        /* 检查文件路径是滞合法 */
-        if( !$this->checkFilePath() ) {
-            $this->errorMess = $this->getError();
+    public function __set($name,$value){
+        if(isset($this->config[$name])) {
+            $this->config[$name] = $value;
+            if($name == 'driverConfig'){
+                //改变驱动配置后重置上传驱动
+                //注意：必须选改变驱动然后再改变驱动配置
+                $this->setDriver();
+            }
+        }
+    }
+
+    public function __isset($name){
+        return isset($this->config[$name]);
+    }
+
+    /**
+     * 获取最后一次上传错误信息
+     * @return string 错误信息
+     */
+    public function getError(){
+        return $this->error;
+    }
+
+    /**
+     * 上传单个文件
+     * @param  array  $file 文件数组
+     * @return array        上传成功后的文件信息
+     */
+    public function uploadOne($file){
+        $info = $this->upload(array($file));
+        return $info ? $info[0] : $info;
+    }
+
+    /**
+     * 上传文件
+     * @param 文件信息数组 $files ，通常是 $_FILES数组
+     */
+    public function upload($files='') {
+        if('' === $files){
+            $files  =   $_FILES;
+        }
+        if(empty($files)){
+            $this->error = '没有上传的文件！';
             return false;
         }
-        /* 将文件上传的信息取出赋给变量 */
-        $name = $_FILES[$fileField]['name']; //上传文件的文件名 'Chrysanthemum.jpg'
-        $tmp_name = $_FILES[$fileField]['tmp_name']; //服务器端临时文件存放路径 'D:\wamp\tmp\php71E6.tmp'
-        $size = $_FILES[$fileField]['size']; //上传文件的大小 879394   858 KB (879,394 字节)
-        $error = $_FILES[$fileField]['error']; //错误信息 0
 
-        /* 如果是多个文件上传则$file["name"]会是一个数组 */
-        if(is_Array($name)){
-            $errors=array();
-            /*多个文件上传则循环处理 ， 这个循环只有检查上传文件的作用，并没有真正上传 */
-            for($i = 0; $i < count($name); $i++){
-                /*设置文件信息 */
-                if($this->setFiles($name[$i],$tmp_name[$i],$size[$i],$error[$i] )) {
-                    if(!$this->checkFileSize() || !$this->checkFileType()){
-                        $errors[] = $this->getError();
-                        $return=false;
-                    }
-                }else{
-                    $errors[] = $this->getError();
-                    $return=false;
-                }
-                /* 如果有问题，则重新初使化属性 */
-                if(!$return)
-                    $this->setFiles();
+        /* 检测上传根目录 */
+        if(!$this->uploader->checkRootPath($this->rootPath)){
+            $this->error = $this->uploader->getError();
+            return false;
+        }
+
+        /* 检查上传目录 */
+        if(!$this->uploader->checkSavePath($this->savePath)){
+            $this->error = $this->uploader->getError();
+            return false;
+        }
+
+        /* 逐个检测并上传文件 */
+        $info    =  array();
+        if(function_exists('finfo_open')){
+            $finfo   =  finfo_open ( FILEINFO_MIME_TYPE );
+        }
+        // 对上传文件数组信息处理
+        $files   =  $this->dealFiles($files);
+        foreach ($files as $key => $file) {
+            $file['name']  = strip_tags($file['name']);
+            if(!isset($file['key']))   $file['key']    =   $key;
+            /* 通过扩展获取文件类型，可解决FLASH上传$FILES数组返回文件类型错误的问题 */
+            if(isset($finfo)){
+                $file['type']   =   finfo_file ( $finfo ,  $file['tmp_name'] );
             }
 
-            if($return){
-                /* 存放所有上传后文件名的变量数组 */
-                $fileNames = array();
-                /* 如果上传的多个文件都是合法的，则通过循环向服务器上传文件 */
-                for($i = 0; $i < count($name); $i++){
-                    if($this->setFiles($name[$i], $tmp_name[$i], $size[$i], $error[$i] )) {
-                        $this->setNewFileName();
-                        if(!$this->copyFile()){
-                            $errors[] = $this->getError();
-                            $return = false;
-                        }
-                        $fileNames[] = $this->newFileName;
-                    }
-                }
-                $this->newFileName = $fileNames;
+            /* 获取上传文件后缀，允许上传无后缀文件 */
+            $file['ext']    =   pathinfo($file['name'], PATHINFO_EXTENSION);
+
+            /* 文件上传检测 */
+            if (!$this->check($file)){
+                continue;
             }
-            $this->errorMess = $errors;
-            return $return;
-            /*上传单个文件处理方法*/
-        } else {
-            /* 设置文件信息 */
-            if($this->setFiles($name,$tmp_name,$size,$error)) {
-                /* 上传之前先检查一下大小和类型 */
-                if($this->checkFileSize() && $this->checkFileType()){
-                    /* 为上传文件设置新文件名 */
-                    $this->setNewFileName();
-                    /* 上传文件  返回0为成功， 小于0都为错误 */
-                    if($this->copyFile()){
-                        return true;
-                    }else{
-                        $return=false;
-                    }
-                }else{
-                    $return=false;
+
+            /* 获取文件hash */
+            if($this->hash){
+                $file['md5']  = md5_file($file['tmp_name']);
+                $file['sha1'] = sha1_file($file['tmp_name']);
+            }
+
+            /* 调用回调函数检测文件是否存在 */
+            $data = call_user_func($this->callback, $file);
+            if( $this->callback && $data ){
+                if ( file_exists('.'.$data['path'])  ) {
+                    $info[$key] = $data;
+                    continue;
+                }elseif($this->removeTrash){
+                    call_user_func($this->removeTrash,$data);//删除垃圾据
                 }
+            }
+
+            /* 生成保存文件名 */
+            $savename = $this->getSaveName($file);
+            if(false == $savename){
+                continue;
             } else {
-                $return=false;
+                $file['savename'] = $savename;
             }
-            //如果$return为false, 则出错，将错误信息保存在属性errorMess中
-            if(!$return)
-                $this->errorMess=$this->getError();
 
-            return $return;
+            /* 检测并创建子目录 */
+            $subpath = $this->getSubPath($file['name']);
+            if(false === $subpath){
+                continue;
+            } else {
+                $file['savepath'] = $this->savePath . $subpath;
+            }
+
+            /* 对图像文件进行严格检测 */
+            $ext = strtolower($file['ext']);
+            if(in_array($ext, array('gif','jpg','jpeg','bmp','png','swf'))) {
+                $imginfo = getimagesize($file['tmp_name']);
+                if(empty($imginfo) || ($ext == 'gif' && empty($imginfo['bits']))){
+                    $this->error = '非法图像文件！';
+                    continue;
+                }
+            }
+
+            /* 保存文件 并记录保存成功的文件 */
+            if ($this->uploader->save($file,$this->replace)) {
+                unset($file['error'], $file['tmp_name']);
+                $info[$key] = $file;
+            } else {
+                $this->error = $this->uploader->getError();
+            }
         }
+        if(isset($finfo)){
+            finfo_close($finfo);
+        }
+        return empty($info) ? false : $info;
     }
 
     /**
-     * 获取上传后的文件名称
-     * @param  void   没有参数
-     * @return string 上传后，新文件的名称， 如果是多文件上传返回数组
+     * 转换上传文件数组变量为正确的方式
+     * @access private
+     * @param array $files  上传的文件变量
+     * @return array
      */
-    public function getFileName(){
-        return $this->newFileName;
-    }
-
-    /**
-     * 上传失败后，调用该方法则返回，上传出错信息
-     * @param  void   没有参数
-     * @return string  返回上传文件出错的信息报告，如果是多文件上传返回数组
-     */
-    public function getErrorMsg(){
-        return $this->errorMess;
-    }
-
-    /* 设置上传出错信息 */
-    private function getError() {
-        $str = "上传文件<font color='red'>{$this->originName}</font>时出错 : ";
-        switch ($this->errorNum) {
-            case 4: $str .= "没有文件被上传"; break;
-            case 3: $str .= "文件只有部分被上传"; break;
-            case 2: $str .= "上传文件的大小超过了HTML表单中MAX_FILE_SIZE选项指定的值"; break;
-            case 1: $str .= "上传的文件超过了php.ini中upload_max_filesize选项限制的值"; break;
-            case -1: $str .= "未允许类型"; break;
-            case -2: $str .= "文件过大,上传的文件不能超过{$this->maxsize}个字节"; break;
-            case -3: $str .= "上传失败"; break;
-            case -4: $str .= "建立存放上传文件目录失败，请重新指定上传目录"; break;
-            case -5: $str .= "必须指定上传文件的路径"; break;
-            default: $str .= "未知错误";
-        }
-        return $str.'<br>';
-    }
-
-    /* 设置和$_FILES有关的内容 */
-    private function setFiles($name="", $tmp_name="", $size=0, $error=0) {
-        $this->setOption('errorNum', $error);
-        if($error)
-            return false;
-        $this->setOption('originName', $name);
-        $this->setOption('tmpFileName',$tmp_name);
-        $aryStr = explode(".", $name);
-        $this->setOption('fileType', strtolower($aryStr[count($aryStr)-1]));
-        $this->setOption('fileSize', $size);
-        return true;
-    }
-
-    /* 为单个成员属性设置值 */
-    private function setOption($key, $val) {
-        $this->$key = $val;
-    }
-
-    /* 设置上传后的文件名称 */
-    private function setNewFileName() {
-        if ($this->israndname) {
-            $this->setOption('newFileName', $this->proRandName());
-        } else{
-            $this->setOption('newFileName', $this->originName);
-        }
-    }
-
-    /* 检查上传的文件是否是合法的类型 */
-    private function checkFileType() {
-        if (in_array(strtolower($this->fileType), $this->allowtype)) {
-            return true;
-        }else {
-            $this->setOption('errorNum', -1);
-            return false;
-        }
-    }
-
-    /* 检查上传的文件是否是允许的大小 */
-    private function checkFileSize() {
-        if ($this->fileSize > $this->maxsize) {
-            $this->setOption('errorNum', -2);
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    /* 检查是否有存放上传文件的目录 */
-    private function checkFilePath() {
-        if(empty($this->path)){
-            $this->setOption('errorNum', -5);
-            return false;
-        }
-        if (!file_exists($this->path) || !is_writable($this->path)) {
-            if (!@mkdir($this->path, 0755)) {
-                $this->setOption('errorNum', -4);
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* 设置随机文件名 */
-    private function proRandName() {
-        $fileName = date('YmdHis')."_".rand(1000,9999);
-        return $fileName.'.'.$this->fileType;
-    }
-
-    /* 复制上传文件到指定的位置 */
-    private function copyFile() {
-        if(!$this->errorNum) {
-            $path = rtrim($this->path, '/').'/';
-            $path .= $this->newFileName;
-            if (@move_uploaded_file($this->tmpFileName, $path)) {
-                return true;
+    private function dealFiles($files) {
+        $fileArray  = array();
+        $n          = 0;
+        foreach ($files as $key=>$file){
+            if(is_array($file['name'])) {
+                $keys       =   array_keys($file);
+                $count      =   count($file['name']);
+                for ($i=0; $i<$count; $i++) {
+                    $fileArray[$n]['key'] = $key;
+                    foreach ($keys as $_key){
+                        $fileArray[$n][$_key] = $file[$_key][$i];
+                    }
+                    $n++;
+                }
             }else{
-                $this->setOption('errorNum', -3);
-                return false;
+                $fileArray = $files;
+                break;
             }
-        } else {
-            return false;
+        }
+        return $fileArray;
+    }
+
+    /**
+     * 设置上传驱动
+     * @param string $driver 驱动名称
+     * @param array $config 驱动配置
+     */
+    private function setDriver($driver = null, $config = null){
+        $driver = $driver ? : ($this->driver       ? : C('FILE_UPLOAD_TYPE'));
+        $config = $config ? : ($this->driverConfig ? : C('UPLOAD_TYPE_CONFIG'));
+        $class = strpos($driver,'\\')? $driver : 'Think\\Upload\\Driver\\'.ucfirst(strtolower($driver));
+        $this->uploader = new $class($config);
+        if(!$this->uploader){
+            E("不存在上传驱动：{$name}");
         }
     }
+
+    /**
+     * 检查上传的文件
+     * @param array $file 文件信息
+     */
+    private function check($file) {
+        /* 文件上传失败，捕获错误代码 */
+        if ($file['error']) {
+            $this->error($file['error']);
+            return false;
+        }
+
+        /* 无效上传 */
+        if (empty($file['name'])){
+            $this->error = '未知上传错误！';
+        }
+
+        /* 检查是否合法上传 */
+        if (!is_uploaded_file($file['tmp_name'])) {
+            $this->error = '非法上传文件！';
+            return false;
+        }
+
+        /* 检查文件大小 */
+        if (!$this->checkSize($file['size'])) {
+            $this->error = '上传文件大小不符！';
+            return false;
+        }
+
+        /* 检查文件Mime类型 */
+        //TODO:FLASH上传的文件获取到的mime类型都为application/octet-stream
+        if (!$this->checkMime($file['type'])) {
+            $this->error = '上传文件MIME类型不允许！';
+            return false;
+        }
+
+        /* 检查文件后缀 */
+        if (!$this->checkExt($file['ext'])) {
+            $this->error = '上传文件后缀不允许';
+            return false;
+        }
+
+        /* 通过检测 */
+        return true;
+    }
+
+
+    /**
+     * 获取错误代码信息
+     * @param string $errorNo  错误号
+     */
+    private function error($errorNo) {
+        switch ($errorNo) {
+            case 1:
+                $this->error = '上传的文件超过了 php.ini 中 upload_max_filesize 选项限制的值！';
+                break;
+            case 2:
+                $this->error = '上传文件的大小超过了 HTML 表单中 MAX_FILE_SIZE 选项指定的值！';
+                break;
+            case 3:
+                $this->error = '文件只有部分被上传！';
+                break;
+            case 4:
+                $this->error = '没有文件被上传！';
+                break;
+            case 6:
+                $this->error = '找不到临时文件夹！';
+                break;
+            case 7:
+                $this->error = '文件写入失败！';
+                break;
+            default:
+                $this->error = '未知上传错误！';
+        }
+    }
+
+    /**
+     * 检查文件大小是否合法
+     * @param integer $size 数据
+     */
+    private function checkSize($size) {
+        return !($size > $this->maxSize) || (0 == $this->maxSize);
+    }
+
+    /**
+     * 检查上传的文件MIME类型是否合法
+     * @param string $mime 数据
+     */
+    private function checkMime($mime) {
+        return empty($this->config['mimes']) ? true : in_array(strtolower($mime), $this->mimes);
+    }
+
+    /**
+     * 检查上传的文件后缀是否合法
+     * @param string $ext 后缀
+     */
+    private function checkExt($ext) {
+        return empty($this->config['exts']) ? true : in_array(strtolower($ext), $this->exts);
+    }
+
+    /**
+     * 根据上传文件命名规则取得保存文件名
+     * @param string $file 文件信息
+     */
+    private function getSaveName($file) {
+        $rule = $this->saveName;
+        if (empty($rule)) { //保持文件名不变
+            /* 解决pathinfo中文文件名BUG */
+            $filename = substr(pathinfo("_{$file['name']}", PATHINFO_FILENAME), 1);
+            $savename = $filename;
+        } else {
+            $savename = $this->getName($rule, $file['name']);
+            if(empty($savename)){
+                $this->error = '文件命名规则错误！';
+                return false;
+            }
+        }
+
+        /* 文件保存后缀，支持强制更改文件后缀 */
+        $ext = empty($this->config['saveExt']) ? $file['ext'] : $this->saveExt;
+
+        return $savename . '.' . $ext;
+    }
+
+    /**
+     * 获取子目录的名称
+     * @param array $file  上传的文件信息
+     */
+    private function getSubPath($filename) {
+        $subpath = '';
+        $rule    = $this->subName;
+        if ($this->autoSub && !empty($rule)) {
+            $subpath = $this->getName($rule, $filename) . '/';
+
+            if(!empty($subpath) && !$this->uploader->mkdir($this->savePath . $subpath)){
+                $this->error = $this->uploader->getError();
+                return false;
+            }
+        }
+        return $subpath;
+    }
+
+    /**
+     * 根据指定的规则获取文件或目录名称
+     * @param  array  $rule     规则
+     * @param  string $filename 原文件名
+     * @return string           文件或目录名称
+     */
+    private function getName($rule, $filename){
+        $name = '';
+        if(is_array($rule)){ //数组规则
+            $func     = $rule[0];
+            $param    = (array)$rule[1];
+            foreach ($param as &$value) {
+                $value = str_replace('__FILE__', $filename, $value);
+            }
+            $name = call_user_func_array($func, $param);
+        } elseif (is_string($rule)){ //字符串规则
+            if(function_exists($rule)){
+                $name = call_user_func($rule);
+            } else {
+                $name = $rule;
+            }
+        }
+        return $name;
+    }
+
 }
