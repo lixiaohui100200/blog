@@ -26,10 +26,14 @@ class CateController extends Controller
             $up->set("israndname",true);//true:由系统命名；false：保留原文件名
             $up->upload("cate_image");
             $name = $up->getFileName();
-            $image = new Image($path);
-            $image->thumb($name,350,220,"cate_");
-            unlink($path.$name);
-            $input['cate_image']= '/uploads/cate/'.'cate_'.$name;
+            if (!empty($name)){
+                $image = new Image($path);
+                $image->thumb($name,350,220,"cate_");
+                unlink($path.$name);
+                $input['cate_image']= '/uploads/cate/'.'cate_'.$name;
+            }
+
+
             $rules =[
                 'cate_name' => 'required',
                 'cate_order'=>'integer'
