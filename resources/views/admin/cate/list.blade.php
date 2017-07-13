@@ -42,6 +42,7 @@
                         <th>关键字</th>
                         <th>关键字描述</th>
                         <th>点击量</th>
+                        <th>分类图片</th>
                         <th>操作</th>
                     </tr>
                     @foreach($data as $v)
@@ -57,6 +58,7 @@
                         <td>{{$v->cate_keywords}}</td>
                         <td>{{$v->cate_discription}}</td>
                         <td>{{$v->cate_view}}</td>
+                        <td align="center"><img src="{{$v->cate_image}}" width="50" height="30" alt=""></td>
                         <td>
                             <a href="{{url('admin/edit/'.$v->cate_id)}}">修改</a>
                             <a href="javascript:;" onclick="delCate({{$v->cate_id}})">删除</a>

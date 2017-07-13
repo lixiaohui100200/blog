@@ -35,7 +35,7 @@
     <!--结果集标题与导航组件 结束-->
 
     <div class="result_wrap">
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <table class="add_tab">
                 <tbody>
@@ -61,6 +61,12 @@
                         <th>分类标题：</th>
                         <td>
                             <input type="text" class="lg" name="cate_title">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>分类图片：</th>
+                        <td>
+                            <input type="file" class="lg" name="cate_image">
                         </td>
                     </tr>
                     <tr>

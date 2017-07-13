@@ -8,12 +8,28 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use FileUpload;
+use Image;
 
 class CateController extends Controller
 {
     public function add()
     {
         if ($input = Input::except('_token')){
+
+            $up = new FileUpload();
+            //设置属性（上传的位置、大小、类型、设置文件名是否要随机生成）
+            $path = "./uploads/cate/";
+            $up->set("path",$path);
+            $up->set("maxsize",2000000); //kb
+            $up->set("allowtype",array("gif","png","jpg","jpeg"));//可以是"doc"、"docx"、"xls"、"xlsx"、"csv"和"txt"等文件，注意设置其文件大小
+            $up->set("israndname",true);//true:由系统命名；false：保留原文件名
+            $up->upload("cate_image");
+            $name = $up->getFileName();
+            $image = new Image($path);
+            $image->thumb($name,350,220,"cate_");
+            unlink($path.$name);
+            $input['cate_image']= '/uploads/cate/'.'cate_'.$name;
             $rules =[
                 'cate_name' => 'required',
                 'cate_order'=>'integer'
