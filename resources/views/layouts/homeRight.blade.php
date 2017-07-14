@@ -5,6 +5,7 @@
             <input type="submit" value=" ">
         </form>
     </div>
+
     <h4>热门文章</h4>
     @foreach($art_new as $v)
     <div class="blog-grids wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
@@ -18,18 +19,10 @@
         <div class="clearfix"> </div>
     </div>
     @endforeach
-    <h4>文章分类</h4>
-    @foreach($art_new as $v)
-        <div class="blog-grids wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
-            <div class="blog-grid-left">
-                <a href="{{url('/single/').'/'.$v->art_id}}"><img src="/{{$v->art_image}}" class="img-responsive" alt=""></a>
-            </div>
-            <div class="blog-grid-right">
-
-                <h5><a href="{{url('/single').'/'.$v->art_id}}">{{$v->art_title}}</a> </h5>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
+    <br/>
+    <h4>所有分类</h4>
+    @foreach($cate_ as $a)
+                <h5><a href="{{url('/music').'/'.$a->cate_id}}">{{$a->cate_name}}</a> </h5>
     @endforeach
     <div class="insta wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
         <h4>Instagram</h4>
