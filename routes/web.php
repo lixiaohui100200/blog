@@ -17,7 +17,7 @@ Route::any('/features/{cate_id}', 'Home\FeaturesController@index');
 Route::get('/codes', 'Home\CodesController@index');
 Route::get('/contact', 'Home\ContactController@index');
 Route::get('/fashion', 'Home\FashionController@index');
-Route::get('/music', 'Home\MusicController@index');
+Route::get('/music/{cate_id}', 'Home\MusicController@index');
 Route::get('/travel', 'Home\FashionController@index');
 Route::get('/single', 'Home\SingleController@index');
 //后台

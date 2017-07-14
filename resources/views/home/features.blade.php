@@ -6,11 +6,14 @@
 		<div class="agile-1 clearfix">
 			<div class="features-main">
 				<div class="fea-top">
-				  <h3 class="w3">AMAZING FEATURES</h3>
-				  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta.</p>
+
+				  <h3 class="w3">{{$name[0]->cate_name}}</h3>
+				  <p>{{$name[0]->cate_title}}</p>
+
 				</div>
 				<div class="feature-botttom clearfix">
                     @foreach($data as $v)
+						<a href="{{url('/music/'.$v->cate_id)}}">
 							<div class="fea-grid deCss" style="width:353px;height:300px;float:left;margin-right:10px;">
 								<div class="fea-img">
 									<img src="{{$v->cate_image}}" alt="">
@@ -20,6 +23,7 @@
 									<p>{{$v->cate_title}}</p>
 								 </div>
 							</div>
+						</a>
 					@endforeach
 
 				</div>

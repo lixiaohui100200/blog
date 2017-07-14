@@ -12,7 +12,8 @@ class FeaturesController extends Controller
     {
         $data = DB::table('cate')->where('cate_pid',$cate_id)->get();
         $cate = DB::table('cate')->where('cate_pid',0)->select('cate_name','cate_id')->get();
-        return view('home.features',['cate'=>$cate],['data'=>$data]);
+        $cate_name = DB::table('cate')->where('cate_id',$cate_id)->select('cate_name','cate_title')->get();
+        return view('home.features',['cate'=>$cate],['data'=>$data])->with('name',$cate_name);
     }
 
 
