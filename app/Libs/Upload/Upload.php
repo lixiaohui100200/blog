@@ -7,8 +7,8 @@ class FileUpload {
     private $path = "./uploads";          //上传文件保存的路径
     private $allowtype = array('jpg','gif','png'); //设置限制上传文件的类型
     private $maxsize = 1000000;           //限制文件上传大小（字节）
-    private $israndname = true;           //设置是否随机重命名文件， false不随机
-
+    private $israndname = 1;           //1:由系统命名；0：保留原文件名 2是自定义固定名字
+    private $guding = '';               //设置固定名字：默认为空
     private $originName;              //源文件名
     private $tmpFileName;              //临时文件名
     private $fileType;               //文件类型(文件后缀)
@@ -173,10 +173,14 @@ class FileUpload {
 
     /* 设置上传后的文件名称 */
     private function setNewFileName() {
-        if ($this->israndname) {
+        if ($this->israndname==1) {
             $this->setOption('newFileName', $this->proRandName());
-        } else{
+        }
+        if($this->israndname==0){
             $this->setOption('newFileName', $this->originName);
+        }
+        if($this->israndname==2){
+            $this->setOption('newFileName',$this->guding);
         }
     }
 
@@ -220,7 +224,6 @@ class FileUpload {
         $fileName = date('YmdHis')."_".rand(1000,9999);
         return $fileName.'.'.$this->fileType;
     }
-
     /* 复制上传文件到指定的位置 */
     private function copyFile() {
         if(!$this->errorNum) {

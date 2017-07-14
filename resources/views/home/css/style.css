@@ -278,7 +278,7 @@ label.on{
 }
 /*--banner--*/
 .banner{
-background: url(../images/banner-1.jpg) no-repeat 0px 0px;
+background: url(../../../../uploads/banner/banner-1.jpg) no-repeat 0px 0px;
 background-size:cover;
 -webkit-background-size: cover;
 -o-background-size: cover;
@@ -1206,7 +1206,6 @@ width:100%;
     color: #9c9c9c;
     line-height: 1.8em;
     margin: 1em 0;
-    word-break:break-all;
 }
 .tip-gd-left:nth-child(2) {
   margin-top: 60px;

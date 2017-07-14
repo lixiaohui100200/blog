@@ -24,6 +24,7 @@ Route::get('/single/{art_id}', 'Home\SingleController@index');
 Route::group(['middleware'=>['web','admin.login']],function (){
     Route::get('admin/index','Admin\IndexController@index');
     Route::get('admin/info','Admin\IndexController@info');
+    Route::any('admin/banner','Admin\BannerController@banner');
     /*
     *分类url开始
     */
