@@ -5,17 +5,22 @@
 	<div class="container">
 		<div class="col-md-9 technology-left">
 			<div class="agileinfo">
-
-		  <h2 class="w3">SINGLE PAGE</h2>
+				@foreach($data as $v)
+		  <h2 class="w3">{{$v->art_title}}</h2>
 			<div class="single">
-			   <img src="/resources/views/home/images/sing-1.jpg" class="img-responsive" alt="">
+			   <img src="/{{$v->art_image}}" class="img-responsive" alt="">
 			    <div class="b-bottom"> 
-			      <h5 class="top">What turn out consetetur sadipscing elit</h5>
-				   <p class="sub">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since,Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industryLorem Ipsum has been the industry's standard dummy text ever since Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+			     {{-- <h5 class="top">What turn out consetetur sadipscing elit</h5>--}}
+				   <div style="width: 80%;height: 40%">
+					   <p class="sub">{!! $v->art_content !!}</p>
+				   </div>
+
 			      <p>On Aug 01 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+
 				 
 				</div>
 			 </div>
+				@endforeach
 			  
 
 						<div class="response">

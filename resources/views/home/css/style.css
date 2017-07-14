@@ -1206,6 +1206,7 @@ width:100%;
     color: #9c9c9c;
     line-height: 1.8em;
     margin: 1em 0;
+    word-break:break-all;
 }
 .tip-gd-left:nth-child(2) {
   margin-top: 60px;

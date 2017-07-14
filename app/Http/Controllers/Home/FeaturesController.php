@@ -10,10 +10,11 @@ class FeaturesController extends Controller
 {
     public function index($cate_id)
     {
+        $art_new = DB::table('article')->orderBy('art_id','desc')->limit(5)->get();
         $data = DB::table('cate')->where('cate_pid',$cate_id)->get();
         $cate = DB::table('cate')->where('cate_pid',0)->select('cate_name','cate_id')->get();
-        $cate_name = DB::table('cate')->where('cate_id',$cate_id)->select('cate_name','cate_title')->get();
-        return view('home.features',['cate'=>$cate],['data'=>$data])->with('name',$cate_name);
+        $name = DB::table('cate')->where('cate_id',$cate_id)->select('cate_name','cate_title')->get();
+        return view('home.features',compact('cate','art_new','data','name'));
     }
 
 

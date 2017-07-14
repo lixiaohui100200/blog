@@ -19,7 +19,7 @@ Route::get('/contact', 'Home\ContactController@index');
 Route::get('/fashion', 'Home\FashionController@index');
 Route::get('/music/{cate_id}', 'Home\MusicController@index');
 Route::get('/travel', 'Home\FashionController@index');
-Route::get('/single', 'Home\SingleController@index');
+Route::get('/single/{art_id}', 'Home\SingleController@index');
 //后台
 Route::group(['middleware'=>['web','admin.login']],function (){
     Route::get('admin/index','Admin\IndexController@index');

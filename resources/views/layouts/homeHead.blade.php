@@ -63,7 +63,6 @@
                             @endforeach
                             <li @if($_SERVER['REQUEST_URI']=='/travel') class="active act" @endif><a href="{{url('/travel')}}">旅游</a></li>
                             <li @if($_SERVER['REQUEST_URI']=='/fashion') class="active act" @endif><a href="{{url('/fashion')}}">时尚</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/music') class="active act" @endif><a href="{{url('/music')}}">音乐</a></li>
                             <li @if($_SERVER['REQUEST_URI']=='/codes') class="active act" @endif><a href="{{url('/codes')}}">代码</a></li>
                             <li @if($_SERVER['REQUEST_URI']=='/contact') class="active act" @endif><a href="{{url('/contact')}}">联系</a></li>
                         </ul>
