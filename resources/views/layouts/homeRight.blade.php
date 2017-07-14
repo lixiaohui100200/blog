@@ -5,18 +5,31 @@
             <input type="submit" value=" ">
         </form>
     </div>
-    <h4>Popular Posts </h4>
+    <h4>热门文章</h4>
     @foreach($art_new as $v)
     <div class="blog-grids wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
         <div class="blog-grid-left">
-            <a href="singlepage.html"><img src="/{{$v->art_image}}" class="img-responsive" alt=""></a>
+            <a href="{{url('/single/').'/'.$v->art_id}}"><img src="/{{$v->art_image}}" class="img-responsive" alt=""></a>
         </div>
         <div class="blog-grid-right">
 
-            <h5><a href="singlepage.html">{{$v->art_title}}</a> </h5>
+            <h5><a href="{{url('/single').'/'.$v->art_id}}">{{$v->art_title}}</a> </h5>
         </div>
         <div class="clearfix"> </div>
     </div>
+    @endforeach
+    <h4>文章分类</h4>
+    @foreach($art_new as $v)
+        <div class="blog-grids wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+            <div class="blog-grid-left">
+                <a href="{{url('/single/').'/'.$v->art_id}}"><img src="/{{$v->art_image}}" class="img-responsive" alt=""></a>
+            </div>
+            <div class="blog-grid-right">
+
+                <h5><a href="{{url('/single').'/'.$v->art_id}}">{{$v->art_title}}</a> </h5>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
     @endforeach
     <div class="insta wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
         <h4>Instagram</h4>

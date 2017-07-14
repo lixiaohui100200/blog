@@ -8,7 +8,6 @@
     <script type="applijewelleryion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <link href="/resources/views/home/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <!-- Custom Theme files -->
-    {{--<link href='http://fonts.useso.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>--}}
     <link href="/resources/views/home/css/style.css" rel='stylesheet' type='text/css' />
     <script src="/resources/views/home/js/jquery-1.11.1.min.js"></script>
     <script src="/resources/views/home/js/bootstrap.min.js"></script>
@@ -61,9 +60,6 @@
                             @foreach($cate as $v)
                             <li @if($_SERVER['REQUEST_URI']=='/features/'.$v->cate_id) class="active act" @endif><a href="{{url('/features').'/'.$v->cate_id}}">{{$v->cate_name}}</a></li>
                             @endforeach
-                            <li @if($_SERVER['REQUEST_URI']=='/travel') class="active act" @endif><a href="{{url('/travel')}}">旅游</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/fashion') class="active act" @endif><a href="{{url('/fashion')}}">时尚</a></li>
-                            <li @if($_SERVER['REQUEST_URI']=='/codes') class="active act" @endif><a href="{{url('/codes')}}">代码</a></li>
                             <li @if($_SERVER['REQUEST_URI']=='/contact') class="active act" @endif><a href="{{url('/contact')}}">联系</a></li>
                         </ul>
                     </nav>

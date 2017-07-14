@@ -56,7 +56,7 @@ class ArtController extends Controller
     //文章列表页
     public function lst()
     {
-        $data = DB::table('article')->orderBy('art_id','desc')->paginate(2);
+        $data = DB::table('article')->orderBy('art_id','desc')->paginate(5);
         return view('admin.article.list')->with('data',$data);
     }
     //文章修改

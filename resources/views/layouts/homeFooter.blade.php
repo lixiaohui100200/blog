@@ -39,6 +39,6 @@
 </div>
 <div class="copyright wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
     <div class="container">
-        <p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+        <p>Copyright &copy; 2016.Company name All rights reserved.</p>
     </div>
 </div>
