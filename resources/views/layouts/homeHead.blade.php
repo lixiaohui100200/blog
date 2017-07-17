@@ -22,23 +22,6 @@
 <body>
 <div class="header" id="ban">
     <div class="container">
-{{--
-//搜索位置
-        <div class="head-left wow fadeInLeft animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
-            <div class="header-search">
-                <div class="search">
-                    <input class="search_box" type="checkbox" id="search_box">
-                    <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
-                    <div class="search_form">
-                        <form action="#" method="post">
-                            <input type="text" name="Search" placeholder="Search...">
-                            <input type="submit" value="Send">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
---}}
         <div class="header_right wow fadeInLeft animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
             <nav class="navbar navbar-default">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -67,19 +50,6 @@
                 <!-- /.navbar-collapse -->
             </nav>
         </div>
-{{--
-    分享位置
-        <div class="nav navbar-nav navbar-right social-icons wow fadeInRight animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
-            <ul>
-                <li><a href="#"> </a></li>
-                <li><a href="#" class="pin"> </a></li>
-                <li><a href="#" class="in"> </a></li>
-                <li><a href="#" class="be"> </a></li>
-
-                <li><a href="#" class="vimeo"> </a></li>
-            </ul>
-        </div>
---}}
         <div class="clearfix"> </div>
     </div>
 </div>

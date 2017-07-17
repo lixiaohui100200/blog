@@ -23,7 +23,7 @@ class CateController extends Controller
             $up->set("path",$path);
             $up->set("maxsize",2000000); //kb
             $up->set("allowtype",array("gif","png","jpg","jpeg"));//可以是"doc"、"docx"、"xls"、"xlsx"、"csv"和"txt"等文件，注意设置其文件大小
-            $up->set("israndname",true);//true:由系统命名；false：保留原文件名
+            $up->set("israndname",1);//true:由系统命名；false：保留原文件名
             $up->upload("cate_image");
             $name = $up->getFileName();
             if (!empty($name)){

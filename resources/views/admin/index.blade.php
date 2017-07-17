@@ -34,7 +34,8 @@
             <li>
             	<h3><i class="fa fa-fw fa-cog"></i>系统设置</h3>
                 <ul class="sub_menu">
-                    <li><a href="#" target="main"><i class="fa fa-fw fa-cubes"></i>网站配置</a></li>
+                    <li><a href="{{url('admin/banner_list')}}" target="main"><i class="fa fa-fw fa-file-image-o"></i>首页banner</a></li>
+                    <li><a href="{{url('admin/banner_list_')}}" target="main"><i class="fa fa-fw fa-file-image-o"></i>其他页banner</a></li>
                     <li><a href="#" target="main"><i class="fa fa-fw fa-database"></i>备份还原</a></li>
                 </ul>
             </li>

@@ -24,7 +24,13 @@ Route::get('/single/{art_id}', 'Home\SingleController@index');
 Route::group(['middleware'=>['web','admin.login']],function (){
     Route::get('admin/index','Admin\IndexController@index');
     Route::get('admin/info','Admin\IndexController@info');
+    //更换首页banner
     Route::any('admin/banner','Admin\BannerController@banner');
+    //更换其他页面banner
+    Route::any('admin/banner_','Admin\BannerController@banner_');
+    //banner页面
+    Route::get('admin/banner_list','Admin\BannerController@list1');
+    Route::get('admin/banner_list_','Admin\BannerController@list2');
     /*
     *分类url开始
     */
