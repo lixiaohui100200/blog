@@ -1,5 +1,10 @@
 @include('layouts.homeHead')
 <!-- banner -->
+<style>
+    .music .pagination li.active span{
+        background-color: #000;
+    }
+</style>
 	<!-- technology-left -->
 	<div class="technology">
 	<div class="container">
@@ -27,60 +32,14 @@
 						</div>
 					</a>
 				@endforeach
-				{{--<div class="effect-grid">
-						<h3 class="w3">PROGRAMS</h3>
-						<ul class="grid cs-style-3">
-						<li>
-							<figure>
-								<img src="/resources/views/home/images/m1.jpg" alt="img02">
-								<figcaption>
-									<h4>PROGRAMS</h4>
-								</figcaption>
-							</figure>
-						</li>
-						<li>
-							<figure>
-								<img src="/resources/views/home/images/m2.jpg" alt="img03">
-								<figcaption>
-									<h4>PROGRAMS</h4>
-								</figcaption>
-							</figure>
-						</li>
-						<li>
-							<figure>
-								<img src="/resources/views/home/images/m3.jpg" alt="img06">
-								<figcaption>
-									<h4>PROGRAMS</h4>
-								</figcaption>
-							</figure>
-						</li>
-						<li>
-							<figure>
-								<img src="/resources/views/home/images/m3.jpg" alt="img04">
-								<figcaption>
-									<h4>PROGRAMS</h4>
-								</figcaption>
-							</figure>
-						</li>
-						<li>
-							<figure>
-								<img src="/resources/views/home/images/m2.jpg" alt="img05">
-								<figcaption>
-									<h4>PROGRAMS</h4>
-								</figcaption>
-							</figure>
-						</li>
-						<li>
-							<figure>
-								<img src="/resources/views/home/images/m1.jpg" alt="img01">
-								<figcaption>
-									<h4>PROGRAMS</h4>
-								</figcaption>
-							</figure>
-						</li>
-						<div class="clearfix"></div>
-					</ul>
-				</div>--}}
+                    {{$data->links()}}
+
+                <li class="demospan" style="margin-left:50px;display:inline-block;border:none;"><span style="border:none;color:black;">共{{$data->count()}}页</span></li>
+					<script>
+
+						$(".pagination").append($(".demospan"));
+
+					</script>
 			</div>
 		</div>
 		<!-- technology-right -->
