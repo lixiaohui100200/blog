@@ -2,7 +2,7 @@
 <!-- banner -->
 <style>
     .music .pagination li.active span{
-        background-color: #000;
+        background-color:cornflowerblue ;
     }
 </style>
 	<!-- technology-left -->
@@ -34,11 +34,9 @@
 				@endforeach
                     {{$data->links()}}
 
-                <li class="demospan" style="margin-left:50px;display:inline-block;border:none;"><span style="border:none;color:black;">共{{$data->count()}}页</span></li>
+                <li class="demospan" style="margin-left:50px;display:inline-block;border:none;"><p style="border:none;color:cornflowerblue;font-size: 22px;">共&nbsp;{{$data->total()}}&nbsp;条</p></li>
 					<script>
-
 						$(".pagination").append($(".demospan"));
-
 					</script>
 			</div>
 		</div>
