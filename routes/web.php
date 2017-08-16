@@ -66,6 +66,8 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/pass','Admin\IndexController@pass');
     //退出登录
     Route::get('admin/out','Admin\IndexController@out');
+    //关于自己
+    Route::any('admin/about','Admin\AboutController@index');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::get('admin/code','Admin\LoginController@code');
