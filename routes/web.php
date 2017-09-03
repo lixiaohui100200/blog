@@ -68,6 +68,10 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::get('admin/out','Admin\IndexController@out');
     //关于自己
     Route::any('admin/about','Admin\AboutController@index');
+    //关于自己修改
+    Route::any('admin/editAbout','Admin\AboutController@edit');
+    //关于自己图片上传
+    Route::any('admin/image','Admin\AboutController@image');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::get('admin/code','Admin\LoginController@code');

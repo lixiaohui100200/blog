@@ -62,34 +62,37 @@
 
 </body>
 <script>
-    $('#sbu').click(
-            function () {
-                var formData = new FormData($("#uploadForm")[0]);
-                $.ajax({
-                    url: '{{url('admin/banner_')}}',
-                    type: 'POST',
-                    data: formData,
-                    async: false,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        if (data.state == "200") {
-                            layer.msg(data.msg)
-                            setTimeout(function () {
-                                location.href = '{{url('admin/banner_list_')}}'
-                            }, 2000)
-                        }
-                        if (data.state == "400") {
-                            layer.msg(data.msg)
-                            setTimeout(function () {
-                                location.href = '{{url('admin/banner_list_')}}'
-                            }, 2000)
-                        }
+    $(function () {
+        $('#sbu').click(
+                function () {
+                    var formData = new FormData($("#uploadForm")[0]);
+                    $.ajax({
+                        url: '{{url('admin/banner_')}}',
+                        type: 'POST',
+                        data: formData,
+                        async: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            if (data.state == "200") {
+                                layer.msg(data.msg)
+                                setTimeout(function () {
+                                    location.href = '{{url('admin/banner_list_')}}'
+                                }, 2000)
+                            }
+                            if (data.state == "400") {
+                                layer.msg(data.msg)
+                                setTimeout(function () {
+                                    location.href = '{{url('admin/banner_list_')}}'
+                                }, 2000)
+                            }
 
-                    }
-                });
-            }
-    )
+                        }
+                    });
+                }
+        )
+    })
+
 </script>
 </html>
