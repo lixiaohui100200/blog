@@ -48,12 +48,29 @@
                 <td>
                     <input type="file" class="lg" id="upload" name="banner_image">
                 </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" class="lg"  name="abfs">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" class="lg"  name="abd">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" class="lg"  name="abc">
+                </td>
             </tr>
             <th></th>
             <td>
                 <input type="button" value="提交" id="sbu">
                 <input type="button" class="back" onclick="history.go(-1)" value="返回">
             </td>
+
             </tr>
             </tbody>
         </table>
@@ -65,16 +82,18 @@
     $(function () {
         $('#sbu').click(
                 function () {
-                    var formData = new FormData($("#uploadForm")[0]);
+                    var formData = new FormData($('#uploadForm')[0]);
+                    //formData.append('ext', $('#upload1').val());
                     $.ajax({
                         url: '{{url('admin/banner')}}',
                         type: 'POST',
                         data: formData,
-                        async: false,
-                        cache: false,
+                        //async: false,
+                        //cache: false,
                         contentType: false,
                         processData: false,
                         success: function (data) {
+
                             if (data.state == "200") {
                                 layer.msg(data.msg)
                                 setTimeout(function () {
@@ -87,6 +106,7 @@
                                     location.href = '{{url('admin/banner_list')}}'
                                 }, 2000)
                             }
+
                         }
 
                     });

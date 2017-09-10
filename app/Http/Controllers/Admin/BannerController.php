@@ -12,6 +12,7 @@ class BannerController extends Controller
     public function banner()
     {
         if ($input = Input::all()){
+            //dd($input);
             $up = new \FileUpload();
             //设置属性（上传的位置、大小、类型、设置文件名是否要随机生成）
             $path = "./uploads/banner/";
