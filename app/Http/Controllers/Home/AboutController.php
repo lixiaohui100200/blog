@@ -12,6 +12,7 @@ class AboutController extends Controller
         $art_new = DB::table('article')->orderBy('art_id','desc')->limit(5)->get();
         $cate = DB::table('cate')->where('cate_pid',0)->select('cate_name','cate_id')->get();
         $cate_ = DB::table('cate')->where('cate_pid','<>',0)->select('cate_name','cate_id')->get();
-        return view('home.about',compact('cate','art_new','cate_'));
+        $about = DB::table('about')->where('ab_id',1)->get();
+        return view('home.about',compact('cate','art_new','cate_','about'));
     }
 }
