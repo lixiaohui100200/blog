@@ -18,6 +18,23 @@
         new WOW().init();
     </script>
     <!-- //animation-effect -->
+    <style>
+        #contact_id {
+            background: #fa4b2a;
+            border: none;
+            padding: 1em 0;
+            width: 40%;
+            font-size: 0.95em;
+            color: #fff;
+            letter-spacing: 0.5px;
+            outline: none;
+            transition: .5s all;
+            -webkit-transition: .5s all;
+            -moz-transition: .5s all;
+            -o-transition: .5s all;
+            -ms-transition: .5s all;
+        }
+    </style>
 </head>
 <body>
 <div class="header" id="ban">

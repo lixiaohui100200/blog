@@ -5,41 +5,25 @@
 	<div class="container">
 		<div class="col-md-9 technology-left">
 			<div class="contact-section">
-				<h2 class="w3">CONTACT</h2>
+				<h2 class="w3">联系我们</h2>
 					
 				
 					<div class="contact-grids">
 						<div class="col-md-8 contact-grid">
 							
-							<p>Nemo enim ips voluptatem voluptas sitsper natuaut odit aut fugit consequuntur magni dolores eosqratio nevoluptatem  amet eism com odictor ut ligulate cot ameti dapibu</p>
-							<form action="#" method="post">
-								<input type="text" name="Name" value="Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-								<input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-								<input type="text" name="Phone" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
-								<textarea type="text" name="textarea" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Special Instruction/Comments...';}" required="">Special Instruction/Comments...</textarea>
-								<input type="submit" value="Send">
+							<p>您好,如果您对我们的博客有什么建议或者意见 , 还是您想让我更新什么内容 , 请您提出宝贵建议!</p>
+							<form id="formData" action="" method="post">
+								{{csrf_field()}}
+								<input type="text" name="contact_name" value="姓名 " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '姓名';}" required="">
+								<input type="email" name="contact_email" value="邮箱" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '邮箱';}" required="">
+								<input type="text" name="contact_tel" value="手机" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '手机';}" required="">
+								<textarea type="text" name="contact_content" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '您的建议。。。';}" required="">您的建议。。。</textarea>
+								<input type="button" value="Send" id="contact_id">
 							</form>
-						</div>
-						<div class="col-md-4 contact-grid1">
-							<h4>Address</h4>
-							<div class="contact-top">
-								
-								
-								<div class="clearfix"></div>
-							</div>
-							<ul>
-									<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> Office : 0041-456-3692</li>
-									<li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i> Mobile : 0200-123-4567</li>
-									<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i> <a href="#"></a><a href="mailto:info@example.com">info@example.com</a></li>
-									<li><i class="glyphicon glyphicon-print" aria-hidden="true"></i> Fax : 0091-789-456100</li>
-								</ul>
-
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="google-map">
-						<iframe src="" allowfullscreen></iframe>
-					</div>
+
 				
 			</div>
 		</div>
@@ -59,4 +43,21 @@
 </div>
 @include('layouts.homeFooter')
 </body>
+<script>
+	$(function () {
+		$('#contact_id').click(function () {
+			var formData = new FormData($('#formData')[0])
+			$.ajax({
+				url:'{{url('/contact')}}',
+				type:'post',
+				data:formData,
+				contentType:false,
+				processData:false,
+				success:function (data) {
+					
+				}
+			})
+		})
+	})
+</script>
 </html>

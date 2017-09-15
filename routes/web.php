@@ -15,7 +15,7 @@ Route::any('/', 'Home\IndexController@index');
 Route::get('/about', 'Home\AboutController@index');
 Route::any('/features/{cate_id}', 'Home\FeaturesController@index');
 Route::get('/codes', 'Home\CodesController@index');
-Route::get('/contact', 'Home\ContactController@index');
+Route::any('/contact', 'Home\ContactController@index');
 Route::get('/fashion', 'Home\FashionController@index');
 Route::get('/music/{cate_id}', 'Home\MusicController@index');
 Route::get('/travel', 'Home\FashionController@index');
