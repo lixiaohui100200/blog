@@ -56,15 +56,22 @@ class ArtController extends Controller
     //文章列表页
     public function lst()
     {
-        $data = DB::table('article')->orderBy('art_id','desc')->select('art_id','art_title','art_time')->paginate(5);
+        /*$data = DB::table('article')->orderBy('art_id','desc')->select('art_id','art_title','art_time')->paginate(5);
         $data1 = '';
         foreach ($data as $v){
             foreach ($v as $a){
                 $data1 .=$a.'++++++';
             }
         }
-        dd($data1);
-        return view('admin.article.list')->with('data',$data);
+        dd($data1);*/
+        $i = 0;
+        echo ++$i;
+        echo $i++;
+        $a =++$i;
+        echo $a++;
+        $i = $a;
+        echo $i;
+        //return view('admin.article.list')->with('data',$data);
     }
     //文章修改
     public function edit($art_id)
