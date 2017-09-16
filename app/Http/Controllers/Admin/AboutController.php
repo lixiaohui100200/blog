@@ -46,7 +46,6 @@ class AboutController extends Controller
             $validator = Validator::make($input,$rule,$message);
             if ($validator->passes()){
                  DB::table('about')->where('ab_id',1)->update($input);
-                 //echo "<script>alert('修改成功');location.href='".url('admin/about')."'</script>";
                 $data = [
                     'state' => 1,
                     'msg'=>'修改成功'

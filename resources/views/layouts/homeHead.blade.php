@@ -14,26 +14,27 @@
     <!-- animation-effect -->
     <link href="/resources/views/home/css/animate.min.css" rel="stylesheet">
     <script src="/resources/views/home/js/wow.min.js"></script>
+    <script type="text/javascript" src="{{asset('resources/org/layer/layer.js')}}"></script>
     <script>
         new WOW().init();
     </script>
     <!-- //animation-effect -->
     <style>
         #contact_id {
-            background: #fa4b2a;
-            border: none;
-            padding: 1em 0;
-            width: 40%;
-            font-size: 0.95em;
-            color: #fff;
-            letter-spacing: 0.5px;
-            outline: none;
-            transition: .5s all;
-            -webkit-transition: .5s all;
-            -moz-transition: .5s all;
-            -o-transition: .5s all;
-            -ms-transition: .5s all;
-        }
+             background: #fa4b2a;
+             border: none;
+             padding: 1em 0;
+             width: 40%;
+             font-size: 0.95em;
+             color: #fff;
+             letter-spacing: 0.5px;
+             outline: none;
+             transition: .5s all;
+             -webkit-transition: .5s all;
+             -moz-transition: .5s all;
+             -o-transition: .5s all;
+             -ms-transition: .5s all;
+         }
     </style>
 </head>
 <body>
