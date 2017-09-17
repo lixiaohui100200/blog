@@ -19,7 +19,8 @@
         "classmap": [
             "database",
             "app/Libs/Upload/",
-            "app/Libs/Image/"
+            "app/Libs/Image/",
+            "app/Libs/Db/"
         ],
         "psr-4": {
             "App\\": "app/"
