@@ -83,8 +83,6 @@ class ContactController extends Controller
         $art_new = DB::table('article')->orderBy('art_id', 'desc')->limit(5)->get();
         $cate = DB::table('cate')->where('cate_pid', 0)->select('cate_name', 'cate_id')->get();
         $cate_ = DB::table('cate')->where('cate_pid', '<>', 0)->select('cate_name', 'cate_id')->get();
-        /*$db = new \DbManage('localhost','root','root','blog','utf8');
-        $db->backup('','','');*/
         return view('home.contact', compact('cate', 'art_new', 'cate_'));
     }
 }

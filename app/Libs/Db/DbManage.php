@@ -102,7 +102,7 @@ class DbManage
                 if (strlen($sql) >= $size * 1024) {
                     $file = $filename . "_v" . $p . ".sql";
                     if ($this->_write_file($sql, $file, $dir)) {
-                        $this->_showMsg("表-<b>" . $tablename . "</b>-卷-<b>" . $p . "</b>-数据备份完成,备份文件 [ <span class='imp'>" . $dir . $file . "</span> ]");
+                        //$this->_showMsg("表-<b>" . $tablename . "</b>-卷-<b>" . $p . "</b>-数据备份完成,备份文件 [ <span class='imp'>" . $dir . $file . "</span> ]");
                     } else {
                         $this->_showMsg("备份表 -<b>" . $tablename . "</b>- 失败", true);
                         return false;
@@ -119,18 +119,18 @@ class DbManage
             if ($sql != "") {
                 $filename .= "_v" . $p . ".sql";
                 if ($this->_write_file($sql, $filename, $dir)) {
-                    $this->_showMsg("表-<b>" . $tablename . "</b>-卷-<b>" . $p . "</b>-数据备份完成,备份文件 [ <span class='imp'>" . $dir . $filename . "</span> ]");
+                    //$this->_showMsg("表-<b>" . $tablename . "</b>-卷-<b>" . $p . "</b>-数据备份完成,备份文件 [ <span class='imp'>" . $dir . $filename . "</span> ]");
                 } else {
                     $this->_showMsg("备份卷-<b>" . $p . "</b>-失败<br />");
                     return false;
                 }
             }
-            $this->_showMsg("恭喜您! <span class='imp'>备份成功</span>");
+            //$this->_showMsg("恭喜您! <span class='imp'>备份成功</span>");
         } else {
-            $this->_showMsg('正在备份');
+            //$this->_showMsg('正在备份');
 // 备份全部表
             if ($tables = mysql_query("show table status from " . $this->database)) {
-                $this->_showMsg("读取数据库结构成功！");
+                //$this->_showMsg("读取数据库结构成功！");
             } else {
                 $this->_showMsg("读取数据库结构失败！");
                 exit (0);
@@ -178,13 +178,13 @@ class DbManage
             if ($sql != "") {
                 $filename .= "_v" . $p . ".sql";
                 if ($this->_write_file($sql, $filename, $dir)) {
-                    $this->_showMsg("-卷-<b>" . $p . "</b>-数据备份完成,备份文件 [ <span class='imp'>" . $dir . $filename . "</span> ]");
+                    //$this->_showMsg("-卷-<b>" . $p . "</b>-数据备份完成,备份文件 [ <span class='imp'>" . $dir . $filename . "</span> ]");
                 } else {
                     $this->_showMsg("卷-<b>" . $p . "</b>-备份失败", true);
                     return false;
                 }
             }
-            $this->_showMsg("恭喜您! <span class='imp'>备份成功</span>");
+            //$this->_showMsg("恭喜您! <span class='imp'>备份成功</span>");
         }
     }
 

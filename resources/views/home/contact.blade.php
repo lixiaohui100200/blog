@@ -55,7 +55,7 @@
                         layer.msg(data.msg)
                         setTimeout(function () {
                             location.href = '{{url('/contact')}}'
-                        }, 2000)
+                        }, 1000)
                     }
                     if (data.state == 0) {
                         layer.alert(data.msg, {icon: 5,})

@@ -70,6 +70,13 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/about','Admin\AboutController@index');
     //关于自己修改
     Route::any('admin/editAbout','Admin\AboutController@edit');
+    /*
+     *数据库备份与恢复
+     */
+    #数据库备份恢复页
+    Route::any('admin/database','Admin\DatabaseController@index');
+    //下载数据库文件到本地地址
+    Route::any('admin/down','Admin\DatabaseController@down');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::any('admin/code','Admin\LoginController@code');
