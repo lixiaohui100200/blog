@@ -4,20 +4,18 @@
 <div class="technology">
     <div class="container">
         <div class="col-md-9 technology-left">
-            <div class="contact-section">
+            <div class="contact-section" style="padding-bottom: 500px;">
                 <h2 class="w3">联系我们</h2>
-
-
+                <br>
+                <p>您好,如果您对我们的博客有什么建议或者意见 , 还是您想让我更新什么内容 , 请您提出宝贵建议!</p>
                 <div class="contact-grids">
                     <div class="col-md-8 contact-grid">
-                        <p>您好,如果您对我们的博客有什么建议或者意见 , 还是您想让我更新什么内容 , 请您提出宝贵建议!</p>
                         <form id="formData" action="" method="post">
                             {{csrf_field()}}
-                            {{--<input type="text" name="con_name" value="姓名 " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '姓名';}" >--}}
-                            <input type="text" name="con_name">
-                            <input type="email" name="con_email">
-                            <input type="text" name="con_tel">
-                            <textarea type="text" name="con_content"></textarea>
+                            <input type="text" name="con_name" placeholder="姓名">
+                            <input type="email" name="con_email" placeholder="邮箱">
+                            <input type="text" name="con_tel" placeholder="电话">
+                            <textarea type="text" name="con_content" placeholder="您的建议。。。"></textarea>
                             <input type="button" value="Send" id="contact_id">
                         </form>
                     </div>
