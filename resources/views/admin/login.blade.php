@@ -4,7 +4,21 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="{{asset('resources/views/admin/style/css/ch-ui.admin.css')}}">
 	<link rel="stylesheet" href="{{asset('resources/views/admin/style/font/css/font-awesome.min.css')}}">
+	<script src="/resources/views/home/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="{{asset('resources/org/layer/layer.js')}}"></script>
+
 </head>
+<style>
+	#sub {
+		font-family: "微软雅黑";
+		width: 240px;
+		height: 33px;
+		border-radius: 3px;
+		color: #fff;
+		background: #337ab7;
+		border: 1px solid #2e6da4;
+	}
+</style>
 <body style="background:#F3F3F4;">
 	<div class="login_box">
 		<h1>Blog</h1>
@@ -13,7 +27,7 @@
 			@if(session('msg'))
 			<p style="color:red">{{session('msg')}}</p>
 			@endif
-			<form action="" method="post">
+			<form id="formData" method="post">
                 {{csrf_field()}}
 				<ul>
 					<li>
@@ -30,12 +44,40 @@
 						<img src="{{url('admin/code')}}" alt="" onclick="this.src='{{url('admin/code')}}?'+Math.random()">
 					</li>
 					<li>
-						<input type="submit" value="立即登陆"/>
+						<input type="button" id="sub" value="立即登陆"/>
 					</li>
 				</ul>
 			</form>
-			<p><a href="#">返回首页</a> &copy; 2016 Powered by <a href="http://www.houdunwang.com" target="_blank">http://www.houdunwang.com</a></p>
 		</div>
 	</div>
 </body>
+<script>
+	$(function () {
+
+		$('#sub').click(function () {
+			var formData = new FormData($('#formData')[0])
+			$.ajax({
+				url:'{{url('admin/login')}}',
+				type:'post',
+				data:formData,
+				contentType:false,
+				processData:false,
+				success:function (data) {
+					if(data.state == 200){
+						layer.msg(data.msg)
+						setTimeout(function () {
+							location.href = '{{url('admin/index')}}'
+						}, 2000)
+					}
+					if (data.state == 301){
+						layer.alert(data.msg, {icon: 5,})
+					}
+					if (data.state == 300){
+						layer.alert(data.msg, {icon: 5,})
+					}
+				}
+			})
+		})
+	})
+</script>
 </html>

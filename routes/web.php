@@ -72,6 +72,6 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/editAbout','Admin\AboutController@edit');
 });
 Route::any('admin/login','Admin\LoginController@login');
-Route::get('admin/code','Admin\LoginController@code');
+Route::any('admin/code','Admin\LoginController@code');
 
 
