@@ -42,9 +42,7 @@ class DatabaseController extends Controller
     {
         //导入数据库
         if ($input = Input::except('_token')){
-            if ($input==''){
-                echo '文件不能为空';
-            }else{
+
                 $up = new \FileUpload();
                 //设置属性（上传的位置、大小、类型、设置文件名是否要随机生成）
                 $path = "./uploads/sql/";
@@ -58,8 +56,17 @@ class DatabaseController extends Controller
                 $db = new \DbManage('localhost','root','root','blog','utf8');
                 $db->restore($filename);
                 @unlink($filename); //删除旧目录下的文件
-            }
+                $data = [
+                    'state' => 200,
+                    'msg' => '备份数据恢复成功',
+                ];
 
+        }else{
+            $data = [
+                'state' => 0,
+                'msg' => '您上传的文件为空,请选择文件上传',
+            ];
         }
+        return $data;
     }
 }
