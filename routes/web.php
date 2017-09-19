@@ -77,6 +77,8 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/database','Admin\DatabaseController@index');
     //下载数据库文件到本地地址
     Route::any('admin/down','Admin\DatabaseController@down');
+    //导入数据库恢复文件
+    Route::any('admin/_import','Admin\DatabaseController@_import');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::any('admin/code','Admin\LoginController@code');

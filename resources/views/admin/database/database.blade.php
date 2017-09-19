@@ -9,7 +9,8 @@
     <script type="text/javascript" src="{{asset('resources/views/admin/style/js/jquery.js')}}"></script>
 </head>
 <body>
-    <form action="#" method="post">
+    <form action="{{url('admin/_import')}}" method="post" enctype="multipart/form-data">
+        {{csrf_field()}}
         <div class="result_wrap">
         </div>
 
@@ -24,10 +25,15 @@
                     <tr>
                         <td>数据备份</td>
                         <td>
-
+                            <a href="{{url('admin/down')}}">备份下载</a>
                         </td>
                     </tr>
-
+                    <tr>
+                        <td><input type="file" name="sql"></td>
+                        <td>
+                            <input type="submit" value="提交">
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>

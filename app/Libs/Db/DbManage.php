@@ -332,8 +332,8 @@ class DbManage
 // 检测是否包含分卷，将类似20120516211738_all_v1.sql从_v分开,有则说明有分卷
         $volume = explode("_v", $sqlfile);
         $volume_path = $volume [0];
-        $this->_showMsg("请勿刷新及关闭浏览器以防止程序被中止，如有不慎！将导致数据库结构受损");
-        $this->_showMsg("正在导入备份数据，请稍等！");
+        //$this->_showMsg("请勿刷新及关闭浏览器以防止程序被中止，如有不慎！将导致数据库结构受损");
+        //$this->_showMsg("正在导入备份数据，请稍等！");
         if (empty ($volume [1])) {
             $this->_showMsg("正在导入sql：<span class='imp'>" . $sqlfile . '</span>');
 // 没有分卷
@@ -353,7 +353,7 @@ class DbManage
 // 存在其他分卷，继续执行
                 if (file_exists($tmpfile)) {
 // 执行导入方法
-                    $this->msg .= "正在导入分卷 $volume_id ：<span style='color:#f00;'>" . $tmpfile . '</span><br />';
+                    //$this->msg .= "正在导入分卷 $volume_id ：<span style='color:#f00;'>" . $tmpfile . '</span><br />';
                     if ($this->_import($tmpfile)) {
 
                     } else {
@@ -361,7 +361,7 @@ class DbManage
                         exit ("导入分卷：<span style='color:#f00;'>" . $tmpfile . '</span>失败！可能是数据库结构已损坏！请尝试从分卷1开始导入');
                     }
                 } else {
-                    $this->msg .= "此分卷备份全部导入成功！<br />";
+                    //$this->msg .= "此分卷备份全部导入成功！<br />";
                     return;
                 }
                 $volume_id++;
