@@ -83,6 +83,8 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     #意见反馈模块
     #
     Route::any('admin/contact','Admin\ContactController@index');
+    //意见反馈详细内容
+    Route::any('admin/contact_content','Admin\ContactController@content');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::any('admin/code','Admin\LoginController@code');
