@@ -13,9 +13,8 @@ class ContactController extends Controller
 {
     public function index()
     {
-
+        error_reporting(E_ALL ^ E_NOTICE);
         if ($input = Input::except('_token')) {
-
             $rules = [
                 'con_name' => 'required|max:20',
                 'con_email' => 'email',

@@ -29,6 +29,7 @@
                     <li><a href="{{url('admin/list')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>分类列表</a></li>
                     <li><a href="{{url('admin/artAdd')}}" target="main"><i class="fa fa-fw fa-plus-square"></i>添加文章</a></li>
                     <li><a href="{{url('admin/artList')}}" target="main"><i class="fa fa-fw fa-reorder"></i>文章列表</a></li>
+                    <li><a href="{{url('admin/contact')}}" target="main"><i class="fa fa-fw fa-reorder"></i>意见反馈</a></li>
                     <li><a href="{{url('admin/about')}}" target="main"><i class="fa fa-fw fa-user"></i>关于自己</a></li>
                 </ul>
             </li>

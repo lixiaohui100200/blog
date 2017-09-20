@@ -79,6 +79,10 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/down','Admin\DatabaseController@down');
     //导入数据库恢复文件
     Route::any('admin/_import','Admin\DatabaseController@_import');
+    #
+    #意见反馈模块
+    #
+    Route::any('admin/contact','Admin\ContactController@index');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::any('admin/code','Admin\LoginController@code');
