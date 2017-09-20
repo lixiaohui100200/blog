@@ -58,7 +58,7 @@
                         <td>{{$v->con_name}}</td>
                         <td>{{$v->con_email}}</td>
                         <td>{{$v->con_tel}}</td>
-                        <td>{{$v->con_content}}</td>
+                        <td><input type="button" class="butt" value="点击详情" data-title="{{$v->con_id}}"></td>
                         <td>{{$v->con_ip}}</td>
                         <td>{{$v->con_time}}</td>
                         <td>已读</td>
@@ -79,6 +79,15 @@
     }
 </style>
 <script>
+    $(function () {
+        $('.butt').click(function () {
+            var data = $(this).attr('data-title')
+            $.ajax({
+                'url':'{{url('admin/')}}',
+            })
+        })
+    })
+
 </script>
 </body>
 </html>
