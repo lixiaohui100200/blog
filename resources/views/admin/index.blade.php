@@ -1,4 +1,27 @@
 @include('layouts.adminHead')
+<style>
+	.top_right .badge{
+		border-radius: 50%;
+		display:inline-block;
+		background-color:red;
+		width:15px;
+		height:15px;
+		text-align: center;
+		line-height: 15px;
+		color:#fff;
+		font-size:8px;
+		position: absolute;
+		left:-30px;
+		top:9px;
+	}
+	.top_right ul li{
+		position: relative;
+	}
+	.top_right .fa-volume-up{
+		font-size:20px;
+	}
+
+</style>
 <body>
 	<!--头部 开始-->
 	<div class="top_box">
@@ -11,6 +34,14 @@
 		</div>
 		<div class="top_right">
 			<ul>
+				<li target="main"> <i class="fa fa-fw fa-volume-up"></i>
+				<li>@if($data == 0)
+					@else
+						<a href="{{url('admin/contact')}}" target="main"><span class="badge">{{$data}}</span></a>
+					@endif
+				</li>
+
+
 				<li>管理员：admin</li>
 				<li><a href="{{url('admin/pass')}}" target="main">修改密码</a></li>
 				<li><a href="{{url('admin/out')}}">退出</a></li>

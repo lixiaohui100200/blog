@@ -13,7 +13,8 @@ class IndexController extends CommonController
 {
     public function index()
     {
-        return view('admin.index');
+        $data  = DB::table('contact')->where('con_read',0)->count('con_read');
+        return view('admin.index',['data'=>$data]);
     }
 
     public function info()
