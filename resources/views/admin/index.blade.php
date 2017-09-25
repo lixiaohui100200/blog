@@ -96,5 +96,16 @@
 		{{--CopyRight © 2015. Powered By <a href="http://www.houdunwang.com">http://www.houdunwang.com</a>.--}}
 	</div>
 	<!--底部 结束-->
+	<script>
+		var websocket = new WebSocket('ws://192.16.16.154:6060');
+		websocket.onopen = function () {}
+		websocket.onmessage = function (evt) {
+			append_speak(evt.data)
+		}
+		websocket.onclose = function () {}
+		function append_speak(msg) {
+			alert(msg)
+		}
+	</script>
 </body>
 </html>
