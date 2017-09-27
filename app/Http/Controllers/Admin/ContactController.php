@@ -12,7 +12,7 @@ class ContactController extends Controller
     //列表页
     public function index()
     {
-        $data = DB::table('contact')->orderBy('con_time', 'desc')
+        $data = DB::table('contact')->orderBy('con_read','asc')->orderBy('con_time', 'desc')
             ->select('con_id', 'con_name', 'con_tel', 'con_email', 'con_ip', 'con_time', 'con_read')
             ->paginate(5);
         return view('admin.contact.list', ['data' => $data]);

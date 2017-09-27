@@ -114,6 +114,9 @@
                                 });
                             }
                         });
+                        if(data.read == 0){
+                            window.parent.$("#contact_name").css({'display':'none'})
+                        }
                         window.parent.$("#contact_name").text(data.read)
                     }
                 }
