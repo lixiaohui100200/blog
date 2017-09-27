@@ -24,9 +24,11 @@ class ContactController extends Controller
         if ($input = Input::except('_token')) {
             DB::table('contact')->where('con_id', $input['id'])->update(['con_read' => 1]);
             $data = DB::table('contact')->where('con_id', $input['id'])->select('con_content')->get();
+            $read_count = DB::table('contact')->where('con_read',0)->count('con_read');
             $data1 = [
                 'state' => 200,
                 'msg' => $data[0]->con_content,
+                'read'=>$read_count,
             ];
             return $data1;
         }

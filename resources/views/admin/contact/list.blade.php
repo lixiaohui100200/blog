@@ -114,6 +114,7 @@
                                 });
                             }
                         });
+                        window.parent.$("#contact_name").text(data.read)
                     }
                 }
             })

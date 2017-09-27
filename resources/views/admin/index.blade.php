@@ -37,7 +37,7 @@
 				<li target="main"> <i class="fa fa-fw fa-volume-up"></i>
 				<li>@if($data == 0)
 					@else
-						<a href="{{url('admin/contact')}}" target="main"><span class="badge">{{$data}}</span></a>
+						<a href="{{url('admin/contact')}}" target="main"><span id="contact_name" class="badge">{{$data}}</span></a>
 					@endif
 				</li>
 
@@ -97,15 +97,7 @@
 	</div>
 	<!--底部 结束-->
 	<script>
-		var websocket = new WebSocket('ws://192.16.16.154:6060');
-		websocket.onopen = function () {}
-		websocket.onmessage = function (evt) {
-			append_speak(evt.data)
-		}
-		websocket.onclose = function () {}
-		function append_speak(msg) {
-			alert(msg)
-		}
+
 	</script>
 </body>
 </html>
