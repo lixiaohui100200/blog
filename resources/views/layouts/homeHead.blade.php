@@ -35,6 +35,25 @@
              -o-transition: .5s all;
              -ms-transition: .5s all;
          }
+
+        #comment_id{
+            background: #fa4b2a;
+            border: 1px solid #fa4b2a;
+            padding: .8em 0;
+            width: 30%;
+            margin-top: .5em;
+            font-size: 15px;
+            color: #fff;
+            letter-spacing: 0.5px;
+            outline: none;
+            transition: .5s all;
+            -webkit-transition: .5s all;
+            -moz-transition: .5s all;
+            -o-transition: .5s all;
+            -ms-transition: .5s all;
+            font-family: 'Open Sans', sans-serif;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>

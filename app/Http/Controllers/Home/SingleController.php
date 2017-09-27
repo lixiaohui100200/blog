@@ -17,7 +17,7 @@ class SingleController extends Controller
         //增加文章的点击量
         $view = $data[0]->art_view + 1;
         //评论内容展示
-        $comment = DB::table('comment')->where('com_show',1)->select('comment','comment_date')->get();
+        $comment = DB::table('comment')->where('com_show',1)->where('art_id',$art_id)->select('comment','comment_date')->get();
         DB::table('article')->where('art_id', $art_id)->update(['art_view' => $view]);
         $cate = DB::table('cate')->where('cate_pid', 0)->select('cate_name', 'cate_id')->get();
         $cate_ = DB::table('cate')->where('cate_pid', '<>', 0)->select('cate_name', 'cate_id')->get();
