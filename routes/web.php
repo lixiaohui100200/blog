@@ -86,6 +86,14 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/contact','Admin\ContactController@index');
     //意见反馈详细内容
     Route::any('admin/contact_content','Admin\ContactController@content');
+    /*
+     * 后台评论模块管理
+     */
+    Route::any('admin/comment','Admin\CommentController@index');
+    //点击得到详细文章
+    Route::any('admin/comment_','Admin\CommentController@comment');
+    //点击更换审核
+    Route::any('admin/show','Admin\CommentController@show_');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::any('admin/code','Admin\LoginController@code');
