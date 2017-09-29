@@ -4,9 +4,9 @@
 -- http://yanue.net 
 --
 -- 主机: localhost
--- 生成日期: 2017 年  09 月 29 日 01:28
--- MySQL版本: 5.6.35
--- PHP 版本: 5.6.30
+-- 生成日期: 2017 年  09 月 29 日 17:47
+-- MySQL版本: 5.5.53-log
+-- PHP 版本: 5.6.27
 
 --
 -- 数据库: `blog`
@@ -176,6 +176,22 @@ INSERT INTO `blog_contact` VALUES('7','李晓辉','1777322332@163.com','18677777
 INSERT INTO `blog_contact` VALUES('8','123123','1231@163.com','我去二群翁','去玩儿请问','2017-09-17 22:25:39','::1','1');
 INSERT INTO `blog_contact` VALUES('9','李晓辉','li_xiaohui7510@163.com','18656666643','我觉得这个博客真不怎么样。。。。。哈哈','2017-09-20 14:50:07','127.0.0.1','0');
 INSERT INTO `blog_contact` VALUES('10','孟非','ydsfaiu@163.com','130766678998','您好,如果您对我们的博客有什么建议或者意见 , 还是您想让我更新什么内容 , 请您提出宝贵建议!您好,如果您对我们的博客有什么建议或者意见 , 还是您想让我更新什么内容 , 请您提出宝贵建议!您好,如果您对我们的博客有什么建议或者意见 , 还是您想让我更新什么内容 , 请您提出宝贵建议!您好,如果您对我们的博客有什么建议或者意见 , 还是您想让我更新什么内容 , 请您提出宝贵建议!','2017-09-20 23:58:07','::1','1');
+--
+-- 表的结构blog_keywords
+--
+
+DROP TABLE IF EXISTS `blog_keywords`;
+CREATE TABLE `blog_keywords` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `keywords` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 blog_keywords
+--
+
+INSERT INTO `blog_keywords` VALUES('1','.asdf.asdf.asdf.asdf.asdf.asdf.asdf.asdf.不错.不错2.不错23.天.2342.23432.2342.天下无敌');
 --
 -- 表的结构blog_user
 --

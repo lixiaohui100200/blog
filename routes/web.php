@@ -94,6 +94,8 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/comment_','Admin\CommentController@comment');
     //点击更换审核
     Route::any('admin/show','Admin\CommentController@show_');
+    //关键字过滤
+    Route::any('admin/keywords','Admin\CommentController@keys');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::any('admin/code','Admin\LoginController@code');

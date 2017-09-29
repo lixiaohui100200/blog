@@ -59,4 +59,20 @@ class CommentController extends Controller
 
         }
     }
+    //评论关键字过滤
+    public function keys()
+    {
+        if ($input = Input::except('_token')){
+            //将关键字保存在原有内容后面
+            //输入字段不能为空
+            DB::update("update blog_keywords set keywords=CONCAT(keywords,'".".".$input['keywords']."')");
+            return $data = [
+                'state' =>200,
+                'msg' => '关键字添加成功',
+            ];
+            //DB::update("update blog_keywords set keywords=REPLACE(keywords,'.234','')");
+        }
+
+        return view('admin.comment.keywords');
+    }
 }
