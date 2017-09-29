@@ -27,9 +27,6 @@ class SingleController extends Controller
     public function comment()
     {
         if ($input = Input::except('_token')){
-            $input['user_id'] = 1;
-            $input['comment_date'] = date('Y-m-d H:i:s');
-            $input['com_ip'] = $_SERVER['REMOTE_ADDR'];
             if ($input['comment'] ==''){
                 return $data = [
                     'state' => 0,
@@ -42,6 +39,13 @@ class SingleController extends Controller
                     ];
                 }
             }else{
+                $input['user_id'] = 1;
+                $input['comment_date'] = date('Y-m-d H:i:s');
+                $input['com_ip'] = $_SERVER['REMOTE_ADDR'];
+                $res = DB::table('keywords')->select('keywords')->get();
+                $res = substr($res[0]->keywords,1);
+                $arr = explode('.',$res);
+                $input['comment']=str_replace($arr,'***',$input['comment']);
                 if (DB::table('comment')->insert($input)){
                     $data = [
                         'state' => 200,

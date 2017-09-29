@@ -96,6 +96,8 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::any('admin/show','Admin\CommentController@show_');
     //关键字过滤
     Route::any('admin/keywords','Admin\CommentController@keys');
+    //删除关键字
+    Route::any('admin/remove_key','Admin\CommentController@rem');
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::any('admin/code','Admin\LoginController@code');

@@ -63,16 +63,43 @@ class CommentController extends Controller
     public function keys()
     {
         if ($input = Input::except('_token')){
+            //输入字段不能为空'
+            if ($input['keywords'] == ''){
+                return $data = [
+                    'state' =>001,
+                    'msg' => '关键字关键词添加不能为空',
+                ];
+            }
             //将关键字保存在原有内容后面
-            //输入字段不能为空
             DB::update("update blog_keywords set keywords=CONCAT(keywords,'".".".$input['keywords']."')");
             return $data = [
                 'state' =>200,
                 'msg' => '关键字添加成功',
             ];
-            //DB::update("update blog_keywords set keywords=REPLACE(keywords,'.234','')");
-        }
 
-        return view('admin.comment.keywords');
+        }
+        //展示所有的关键字
+        $res = DB::table('keywords')->select('keywords')->get();
+        $res = substr($res[0]->keywords,1);
+        $arr = explode('.',$res);
+        return view('admin.comment.keywords',compact('arr'));
+    }
+    //删除数据库中的关键字
+    public function rem()
+    {
+        if ($input = Input::except('_token')){
+            if ($input['keys'] == ''){
+                return $data = [
+                    'state' => 001,
+                    'msg' => '发送内容不能为空'
+                ];
+            }else{
+                DB::update("update blog_keywords set keywords=REPLACE(keywords,'".".".$input['keys']."','')");
+                return $data = [
+                    'state' => 200,
+                    'msg' => '关键字删除成功'
+                ];
+            }
+        }
     }
 }
