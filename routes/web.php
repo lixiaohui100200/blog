@@ -12,6 +12,7 @@
 */
 //前台
 Route::any('/', 'Home\IndexController@index');
+Route::any('/register', 'Home\RegisterController@index');
 Route::get('/about', 'Home\AboutController@index');
 Route::any('/features/{cate_id}', 'Home\FeaturesController@index');
 Route::get('/codes', 'Home\CodesController@index');

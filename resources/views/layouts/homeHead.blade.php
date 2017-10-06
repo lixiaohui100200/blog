@@ -9,7 +9,10 @@
     <link href="/resources/views/home/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <!-- Custom Theme files -->
     <link href="/resources/views/home/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="/resources/views/home/css/register/style.css" rel='stylesheet' type='text/css' />
     <script src="/resources/views/home/js/jquery-1.11.1.min.js"></script>
+    <script src="/resources/views/home/js/jquery.min.js"></script>
+    <script src="/resources/views/home/js/jquery.easing.min.js"></script>
     <script src="/resources/views/home/js/bootstrap.min.js"></script>
     <!-- animation-effect -->
     <link href="/resources/views/home/css/animate.min.css" rel="stylesheet">
@@ -17,6 +20,38 @@
     <script type="text/javascript" src="{{asset('resources/org/layer/layer.js')}}"></script>
     <script>
         new WOW().init();
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var k=!0;
+
+            $(".loginmask").css("opacity",0.8);
+
+            if($.browser.version <= 6){
+                $('#reg_setp,.loginmask').height($(document).height());
+            }
+
+            $(".thirdlogin ul li:odd").css({marginRight:0});
+
+            $(".openlogin").click(function(){
+                k&&"0px"!=$("#loginalert").css("top")&& ($("#loginalert").show(),$(".loginmask").fadeIn(500),$("#loginalert").animate({top:0},400,"easeOutQuart"))
+            });
+
+            $(".loginmask,.closealert").click(function(){
+                k&&(k=!1,$("#loginalert").animate({top:-600},400,"easeOutQuart",function(){$("#loginalert").hide();k=!0}),$(".loginmask").fadeOut(500))
+            });
+
+
+            $("#sigup_now,.reg a").click(function(){
+                $("#reg_setp,#setp_quicklogin").show();
+                $("#reg_setp").animate({left:0},500,"easeOutQuart")
+            });
+
+            $(".back_setp").click(function(){
+                "block"==$("#setp_quicklogin").css("display")&&$("#reg_setp").animate({left:"100%"},500,"easeOutQuart",function(){$("#reg_setp,#setp_quicklogin").hide()})
+            });
+
+        });
     </script>
     <!-- //animation-effect -->
     <style>
@@ -81,6 +116,8 @@
                             <li @if($_SERVER['REQUEST_URI']=='/features/'.$v->cate_id) class="active act" @endif><a href="{{url('/features').'/'.$v->cate_id}}">{{$v->cate_name}}</a></li>
                             @endforeach
                             <li @if($_SERVER['REQUEST_URI']=='/contact') class="active act" @endif><a href="{{url('/contact')}}">联系</a></li>
+                            <li class="openlogin"><a href="javascript:void(0);">登录</a></li>
+                            <li class="reg"><a href="javascript:void(0);">注册</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -90,6 +127,47 @@
         <div class="clearfix"> </div>
     </div>
 </div>
+
+<div id="loginalert">
+
+    <div class="pd20 loginpd">
+        <h3><i class="closealert fr"></i><div class="clear"></div></h3>
+        <div class="loginwrap">
+            <div class="loginh">
+                <div class="fl">会员登录</div>
+                <div class="fr">还没有账号<a id="sigup_now" href="javascript:void(0);">立即注册</a></div>
+            </div>
+            <h3><span class="fl">邮箱登录</span><span class="login_warning">用户名或密码错误</span><div class="clear"></div></h3>
+            <form action="" method="post" id="login_form">
+                <div class="logininput">
+                    <input type="text" name="username" class="loginusername" value="" placeholder="邮箱/用户名" />
+                    <input type="text" class="loginuserpasswordt" value="" placeholder="密码" />
+                    <input type="password" name="password" class="loginuserpasswordp" style="display:none" />
+                </div>
+                <div class="loginbtn">
+                    <div class="loginsubmit fl"><input type="submit" value="登录" class="btn" /></div>
+                    <div class="fl" style="margin:26px 0 0 0;"><input id="bcdl" type="checkbox" checked="true" />保持登录</div>
+                    <div class="fr" style="margin:26px 0 0 0;"><a href="http://www.xwcms.net/">忘记密码?</a></div>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!--loginalert end-->
+
+
+<div id="reg_setp">
+    <div class="back_setp">返回</div>
+    <div class="blogo"></div>
+    <div id="setp_quicklogin">
+        <h3>您可以选择以下第三方帐号直接登录17素材网，一分钟完成注册</h3>
+        <ul class="quicklogin_socical">
+            <li class="quicklogin_socical_weibo"><a href="http://t.qq.com/weiboxiwei9265">微博帐号注册</a></li>
+            <li class="quicklogin_socical_qq" style="margin:0;"><a href="http://t.qq.com/weiboxiwei9265">QQ帐号注册</a></li>
+        </ul>
+    </div>
+</div><!--reg_setp end-->
+
 <!--start-main-->
 <div class="header-bottom">
     <div class="container">
