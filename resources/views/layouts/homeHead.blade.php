@@ -158,13 +158,27 @@
 
 <div id="reg_setp">
     <div class="back_setp">返回</div>
-    <div class="blogo"></div>
     <div id="setp_quicklogin">
-        <h3>您可以选择以下第三方帐号直接登录17素材网，一分钟完成注册</h3>
-        <ul class="quicklogin_socical">
-            <li class="quicklogin_socical_weibo"><a href="http://t.qq.com/weiboxiwei9265">微博帐号注册</a></li>
-            <li class="quicklogin_socical_qq" style="margin:0;"><a href="http://t.qq.com/weiboxiwei9265">QQ帐号注册</a></li>
-        </ul>
+        <div class="loginwrap" style="margin: -208px auto;">
+            <div class="loginh">
+                <div class="fl">会员登录</div>
+                <div class="fr">还没有账号<a id="sigup_now" href="javascript:void(0);">立即注册</a></div>
+            </div>
+            <h3><span class="fl">邮箱登录</span><span class="login_warning">用户名或密码错误</span><div class="clear"></div></h3>
+            <form action="" method="post" id="login_form">
+                <div class="logininput">
+                    <input type="text" name="username" class="loginusername" value="" placeholder="邮箱/用户名" />
+                    <input type="text" class="loginuserpasswordt" value="" placeholder="密码" />
+                    <input type="password" name="password" class="loginuserpasswordp" style="display:none" />
+                </div>
+                <div class="loginbtn">
+                    <div class="loginsubmit fl"><input type="submit" value="登录" class="btn" /></div>
+                    <div class="fl" style="margin:26px 0 0 0;"><input id="bcdl" type="checkbox" checked="true" />保持登录</div>
+                    <div class="fr" style="margin:26px 0 0 0;"><a href="http://www.xwcms.net/">忘记密码?</a></div>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
     </div>
 </div><!--reg_setp end-->
 
