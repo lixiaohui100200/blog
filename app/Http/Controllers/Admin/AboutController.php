@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Excel;
 
 class AboutController extends Controller
 {
@@ -67,6 +68,14 @@ class AboutController extends Controller
         }
         $data = DB::table('about')->where('ab_id',1)->get();
         return view('admin.about.edit',['data'=>$data]);
+    }
+    //Excel文件导出功能 By Laravel学院
+    public function export(){
+        $excel_file_path = '123.xls';;
+        $data = Excel::load($excel_file_path)->get()->toArray();
+
+        dd($data);
+
     }
 
 

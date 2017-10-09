@@ -70,6 +70,7 @@ Route::group(['middleware'=>['web','admin.login']],function (){
     Route::get('admin/out','Admin\IndexController@out');
     //关于自己
     Route::any('admin/about','Admin\AboutController@index');
+    Route::any('admin/about1','Admin\AboutController@export');
     //关于自己修改
     Route::any('admin/editAbout','Admin\AboutController@edit');
     /*
