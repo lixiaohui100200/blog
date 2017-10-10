@@ -110,6 +110,9 @@ Route::any('admin/code','Admin\LoginController@code');
 Route::any('student/index','Student\IndexController@index');
 //学生信息卡列表
 Route::any('student/list','Student\ListController@index');
-
+//导入Excel学生信息到数据库
+Route::any('student/addStudent','Student\StudentController@add');
+//班级分类模块
+Route::any('student/addClass','Student\ClassController@add');
 
 
