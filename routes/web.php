@@ -103,5 +103,13 @@ Route::group(['middleware'=>['web','admin.login']],function (){
 });
 Route::any('admin/login','Admin\LoginController@login');
 Route::any('admin/code','Admin\LoginController@code');
+/*
+ *学生管理模块
+ */
+//学生管理首页
+Route::any('student/index','Student\IndexController@index');
+//学生信息卡列表
+Route::any('student/list','Student\ListController@index');
+
 
 

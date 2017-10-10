@@ -71,10 +71,16 @@ class AboutController extends Controller
     }
     //Excel文件导出功能 By Laravel学院
     public function export(){
-        $excel_file_path = '123.xls';;
+        $excel_file_path = '333.xls';;
         $data = Excel::load($excel_file_path)->get()->toArray();
+        $key_name = array('key1','key2','key3','key4','key5','key6','key7','key8','key9','key10','key11','key12','key13','key14','key15');
+        $arr = [];
+        foreach ($data as $k=>$v){
+            $arr_new = array_combine($key_name,$v);
+            $arr[] = $arr_new;
+        }
 
-        dd($data);
+        dd($arr);
 
     }
 
