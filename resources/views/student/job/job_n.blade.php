@@ -120,11 +120,11 @@
                     <th>QQ</th>
                     <th>电话</th>
                     <th>入职状态</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th >追踪信息</th>
+
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="top_id">
                 @foreach($data as $v)
                 <tr class="">
                     <td >{{$v->name}}</td>
@@ -135,8 +135,7 @@
                             未入职
                             @endif
                     </td>
-                    <td><a href="">Edit</a></td>
-                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                    <td><a style="color: #365bff" href="javascript:;" class="content_job" data-id="{{$v->id}}">添加/查看</a></td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -165,6 +164,7 @@
 <script src="/resources/views/student/style/js/bootstrap.min.js"></script>
 <script src="/resources/views/student/style/js/modernizr.min.js"></script>
 <script src="/resources/views/student/style/js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="/resources/org/layer/layer.js"></script>
 
 <!--data table-->
 <script type="text/javascript" src="/resources/views/student/style/js/data-tables/jquery.dataTables.js"></script>
@@ -181,6 +181,19 @@
     jQuery(document).ready(function() {
         EditableTable.init();
     });
+    $(function () {
+        $('#top_id').on('click','.content_job',function () {
+            var id = $(this).attr('data-id')
+            layer.open({
+                type: 2,
+                title: '',
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                area : ['500px' , '700px'],
+                content: '{{url('student/record')}}/'+id
+            });
+        })
+    })
 </script>
 
 </body>

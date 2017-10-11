@@ -106,7 +106,7 @@
                 }
             })
         })
-        //阻止事件冒泡 $(父节点).on('click',"当前节点",function () {}
+        //没有加载的内容没有点击事件 $(父节点).on('click',"当前节点",function () {}
         $('.button_keywords').on('click',"[name='keywords']",function () {
             var keys = $(this).html()
             var this_= this

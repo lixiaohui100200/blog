@@ -103,8 +103,8 @@
                         <h1 class="color-terques"> 30 days Free Trial on All Accounts </h1>
                         <p>No risk. No hidden fees. Cancel at anytime. </p>
                     </div>--}}
-                    <div class="col-lg-3 col-sm-3">
-                        <div class="pricing-table">
+                    <div class="col-lg-3 col-sm-3" style="left: 89px;">
+                        <div class="pricing-table" style="height: 485px;">
                             <div class="pricing-head">
                                 <h1> Basic </h1>
 
@@ -115,16 +115,15 @@
                             <ul class="list-unstyled">
                                 <li>24/7 Tech Support</li>
                                 <li>Advanced Options</li>
-                                <li>100GB Storage</li>
-                                <li>1GB Bandwidth</li>
+
                             </ul>
                             <div class="price-actions">
                                 <a href="{{url('student/job/0').'/'.$class_id}}" class="btn">点击进入</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-3">
-                        <div class="pricing-table">
+                    <div class="col-lg-3 col-sm-3" style="left: 120px;">
+                        <div class="pricing-table" style="height: 485px;">
                             <div class="pricing-head">
                                 <h1> starter </h1>
 
@@ -133,8 +132,6 @@
                                本周入职
                             </div>
                             <ul class="list-unstyled">
-                                <li>24/7 Tech Support</li>
-                                <li>Advanced Options</li>
                                 <li>100GB Storage</li>
                                 <li>1GB Bandwidth</li>
                             </ul>
@@ -143,8 +140,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-3">
-                        <div class="pricing-table most-popular">
+                    <div class="col-lg-3 col-sm-3" style="left: 150px;">
+                        <div class="pricing-table most-popular" style="height: 485px;">
                             <div class="pricing-head">
                                 <h1> Premium </h1>
 
@@ -153,8 +150,6 @@
                                 已就业
                             </div>
                             <ul class="list-unstyled">
-                                <li>24/7 Tech Support</li>
-                                <li>Advanced Options</li>
                                 <li>100GB Storage</li>
                                 <li>1GB Bandwidth</li>
                             </ul>

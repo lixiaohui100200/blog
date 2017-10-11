@@ -122,4 +122,8 @@ Route::any('student/stuList/{class_id}','Student\StudentController@showStudent')
 Route::any('student/job/{class_id}','Student\JobController@index');
 //未就业
 Route::any('student/job/{job_type}/{class_id}','Student\JobController@job_n');
+//记录页
+Route::any('student/record/{stu_id}','Student\JobController@record');
+//添加跟踪内容
+Route::any('student/record_content','Student\JobController@add_record');
 
