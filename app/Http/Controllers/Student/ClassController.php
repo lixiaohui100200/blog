@@ -32,4 +32,10 @@ class ClassController extends Controller
         }
         return view('student.class.add');
     }
+    //班级分类展示
+    public function lst()
+    {
+        $data = DB::table('stu_class')->orderBy('add_time','desc')->get();
+        return view('student.class.list',compact('data'));
+    }
 }

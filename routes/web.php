@@ -114,5 +114,12 @@ Route::any('student/list','Student\ListController@index');
 Route::any('student/addStudent','Student\StudentController@add');
 //班级分类模块
 Route::any('student/addClass','Student\ClassController@add');
-
+//班级分类列表
+Route::any('student/listClass','Student\ClassController@lst');
+//显示班级下的学员详细信息
+Route::any('student/stuList/{class_id}','Student\StudentController@showStudent');
+//就业信息
+Route::any('student/job/{class_id}','Student\JobController@index');
+//未就业
+Route::any('student/job/{job_type}/{class_id}','Student\JobController@job_n');
 

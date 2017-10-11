@@ -7,7 +7,10 @@
   <meta name="author" content="ThemeBucket">
   <link rel="shortcut icon" href="#" type="image/png">
 
-  <title>Form Layouts</title>
+  <title>Editable Table</title>
+
+  <!--data table-->
+  <link rel="stylesheet" href="/resources/views/student/style/js/data-tables/DT_bootstrap.css" />
 
   <link href="/resources/views/student/style/css/style.css" rel="stylesheet">
   <link href="/resources/views/student/style/css/style-responsive.css" rel="stylesheet">
@@ -16,7 +19,6 @@
   <!--[if lt IE 9]>
   <script src="/resources/views/student/style/js/html5shiv.js"></script>
   <script src="/resources/views/student/style/js/respond.min.js"></script>
-
   <![endif]-->
 </head>
 
@@ -64,7 +66,7 @@
         </div>
     </div>
     <!-- left side end-->
-    
+
     <!-- main content start-->
     <div class="main-content" >
 
@@ -75,73 +77,76 @@
         <!-- page heading start-->
         <div class="page-heading">
             <h3>
-                Forms Layouts
+                Editable Table
             </h3>
             <ul class="breadcrumb">
                 <li>
-                    <a href="#">Forms</a>
+                    <a href="#">Dashboard</a>
                 </li>
-                <li class="active"> Forms Layouts </li>
+                <li>
+                    <a href="#">Data Table</a>
+                </li>
+                <li class="active"> Editable Table </li>
             </ul>
         </div>
         <!-- page heading end-->
 
         <!--body wrapper start-->
-        <section class="wrapper">
-        <!-- page start-->
-
-        <div class="row">
-            <div class="col-lg-6" style="width: 930px">
+        <div class="wrapper">
+             <div class="row">
+                <div class="col-sm-12">
                 <section class="panel">
-                    <header class="panel-heading">
-                        Basic Forms
-                    </header>
-                    <div class="panel-body">
-                        <form  id="formdata" action="" method="post" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="form-group">
-                                <label for="exampleInputFile">文章分类：</label>
-                                <select name="class_id">
-                                    <option value="哒哒哒">==选择分类==</option>
-                                    @foreach($data as $v)
-                                        <option value="{{$v->class_id}}">{{$v->class_name}}</option>
-                                    @endforeach
-                                </select>
+                <header class="panel-heading">
+                    班级列表
+                </header>
+                <div class="panel-body">
+                <div class="adv-table editable-table ">
+                <div class="clearfix">
+                    <div class="btn-group pull-right">
 
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">File input</label>
-                                <input type="file" id="exampleInputFile" name="student">
-
-                            </div>
-
-                            {{--<div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input style="width: 500px" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input style="width: 500px" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>--}}
-
-
-                            <button type="button" id="btn" class="btn btn-primary">提交</button>
-                        </form>
-
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="#">Print</a></li>
+                            <li><a href="#">Save as PDF</a></li>
+                            <li><a href="#">Export to Excel</a></li>
+                        </ul>
                     </div>
+                </div>
+                <div class="space15"></div>
+                <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                <tr>
+                    <th>班级名称</th>
+                    <th>添加人</th>
+                    <th>添加时间</th>
+                    <th>学生详细信息</th>
+                    <th>就业信息</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($data as $v)
+                <tr class="">
+
+                    <td>{{$v->class_name}}</td>
+                    <td>{{$v->add_user}}</td>
+                    <td>{{$v->add_time}}</td>
+                    <td><a href="{{url('student/stuList').'/'.$v->class_id}}">学生信息</a></td>
+                    <td><a href="{{url('student/job').'/'.$v->class_id}}">就业信息</a></td>
+                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                </tr>
+                @endforeach
+                </tbody>
+                </table>
+                </div>
+                </div>
                 </section>
-            </div>
-
+                </div>
+                </div>
         </div>
-
-        <!-- page end-->
-        </section>
         <!--body wrapper end-->
 
         <!--footer section start-->
-        {{--<footer>
-            2014 &copy; AdminEx by <a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-        </footer>--}}
+
         <!--footer section end-->
 
 
@@ -156,38 +161,22 @@
 <script src="/resources/views/student/style/js/bootstrap.min.js"></script>
 <script src="/resources/views/student/style/js/modernizr.min.js"></script>
 <script src="/resources/views/student/style/js/jquery.nicescroll.js"></script>
-<script type="text/javascript" src="/resources/org/layer/layer.js"></script>
+
+<!--data table-->
+<script type="text/javascript" src="/resources/views/student/style/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="/resources/views/student/style/js/data-tables/DT_bootstrap.js"></script>
 
 <!--common scripts for all pages-->
 <script src="/resources/views/student/style/js/scripts.js"></script>
-<script>
-    $(function () {
-        $('#btn').click(function () {
-            var formdata = new FormData($('#formdata')[0]);
-            $.ajax({
-                url:'{{url('student/addStudent')}}',
-                type:'post',
-                data:formdata,
-                contentType:false,
-                processData:false,
-                success:function (data) {
-                    if (data.state==100){
-                        layer.alert(data.msg, {icon: 5,})
-                    }
-                    if (data.state==101){
-                        layer.alert(data.msg, {icon: 5,})
-                    }
-                    if (data.state==102){
-                        layer.alert(data.msg, {icon: 5,})
-                    }
-                    if (data.state==200){
-                        layer.msg(data.msg);
-                    }
-                }
-            })
-        })
-    })
 
+<!--script for editable table-->
+<script src="/resources/views/student/style/js/editable-table.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function() {
+        EditableTable.init();
+    });
 </script>
 
 </body>

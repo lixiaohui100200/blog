@@ -5,7 +5,7 @@
             <li><a href="{{url('student/list')}}"> 学籍信息</a></li>
             <li><a href="{{url('student/addStudent')}}"> 导入学生信息</a></li>
             <li><a href="{{url('student/addClass')}}"> 班级分类添加</a></li>
-            <li><a href="../模板/horizontal_menu.html"> Horizontal Menu</a></li>
+            <li><a href="{{url('student/listClass')}}"> 班级分类列表</a></li>
         </ul>
     </li>
     <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>UI Elements</span></a>

@@ -47,11 +47,19 @@ class StudentController extends Controller
                 $arr_new['class_id'] = $input['class_id'];
                 $arr[] = $arr_new;
             }
-            DB::table('stu_class')->where('class_id',$input['class_id'])->update(['show'=>1]);
+
             if (DB::table('student')->insert($arr)){
+                DB::table('stu_class')->where('class_id',$input['class_id'])->update(['show'=>1]);
                 $data1 = [
                     'state' => 200,
                     'msg' => '文件导入成功'
+                ];
+
+                return $data1;
+            }else{
+                $data1 = [
+                    'state' => 102,
+                    'msg' => '文件导入失败'
                 ];
                 return $data1;
             }
@@ -59,5 +67,11 @@ class StudentController extends Controller
         }
         $data = DB::table('stu_class')->select('class_id','class_name')->where('show',0)->get();
         return view('student.student.add',compact('data'));
+    }
+    //显示分类下的学生信息
+    public function showStudent($class_id)
+    {
+        $data = DB::table('student')->where('class_id',$class_id)->get();
+        return view('student.student.stuList',compact('data'));
     }
 }
