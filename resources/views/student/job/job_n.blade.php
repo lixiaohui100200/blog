@@ -139,10 +139,10 @@
                     </td>
                     <td><a style="color: #365bff" href="javascript:;" class="content_job" data-id="{{$v->id}}">添加/查看</a></td>
                     <td>
-                        <a id="default-next-1" href="javascript:void(0);" class="button-next  btn btn-info" style="margin-left: 30px;padding-top: 0px;height: 23px;width: 45px;padding-left: 8px;">更改</a>
+                        <a href="javascript:void(0);" data-id="{{$v->id}}" class="button-next  btn btn-info" style="margin-left: 30px;padding-top: 0px;height: 23px;width: 45px;padding-left: 8px;">更改</a>
                     </td>
                     <td>
-                        <a id="default-next-1" href="javascript:void(0);" class="button-next  btn btn-info" style="margin-left: 30px;padding-top: 0px;height: 23px;width: 45px;padding-left: 8px;">更改</a>
+                        <a  href="javascript:void(0);" data-id="{{$v->id}}" class="button-next2  btn btn-info" style="margin-left: 30px;padding-top: 0px;height: 23px;width: 45px;padding-left: 8px;">更改</a>
                     </td>
                 </tr>
                 @endforeach
@@ -199,6 +199,56 @@
                 shadeClose: true, //点击遮罩关闭层
                 area : ['500px' , '700px'],
                 content: '{{url('student/record')}}/'+id
+            });
+        })
+    $('.button-next').click(function () {
+        var id = $(this).attr('data-id');
+        var data = {id:id,_token:'{{csrf_token()}}'}
+        layer.confirm('修改后请到<span style="color: #5000ff">本周入职</span>内查看该学员', {
+            btn: ['修改','取消'] //按钮
+        }, function(){
+            $.ajax({
+                url:'{{url('student/record_revamp')}}',
+                type:'post',
+                data:data,
+                success:function (data) {
+                    if (data.state==200){
+                        layer.msg(data.msg, {
+                            icon: 1,
+                            time:10000
+                        });
+                        setTimeout(function () {
+                            location.href= location.href
+                        },1000)
+                    }
+                }
+            })
+
+        });
+    })
+    $('.button-next2').click(function () {
+            var id = $(this).attr('data-id');
+            var data = {id:id,_token:'{{csrf_token()}}'}
+            layer.confirm('修改后请到<span style="color: #5000ff">已就业</span>内查看该学员', {
+                btn: ['修改','取消'] //按钮
+            }, function(){
+                $.ajax({
+                    url:'{{url('student/record_revamp_y')}}',
+                    type:'post',
+                    data:data,
+                    success:function (data) {
+                        if (data.state==200){
+                            layer.msg(data.msg, {
+                                icon: 1,
+                                time:10000
+                            });
+                            setTimeout(function () {
+                                location.href= location.href
+                            },1000)
+                        }
+                    }
+                })
+
             });
         })
     })

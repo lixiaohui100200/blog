@@ -60,4 +60,34 @@ class JobController extends Controller
             }
         }
     }
+    //修改未就业为本周入职
+    public function revamp_z()
+    {
+        if ($input = Input::except('_token')){
+            $res = DB::table('student')
+                ->where('id',$input['id'])
+                ->update(['job_type'=>1]);
+            if ($res){
+                return $data = [
+                    'state' => 200,
+                    'msg' => '已经修改为本周入职'
+                ];
+            }
+        }
+    }
+    //修改未就业为已就业
+    public function revamp_y()
+    {
+        if ($input = Input::except('_token')){
+            $res = DB::table('student')
+                ->where('id',$input['id'])
+                ->update(['job_type'=>2]);
+            if ($res){
+                return $data = [
+                    'state' => 200,
+                    'msg' => '已经修改为本周入职'
+                ];
+            }
+        }
+    }
 }
