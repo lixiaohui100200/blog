@@ -121,6 +121,8 @@
                     <th>电话</th>
                     <th>入职状态</th>
                     <th >追踪信息</th>
+                    <th style="width: 130px;">更改为本周入职</th>
+                    <th style="width: 130px;">更改为已入职</th>
 
                 </tr>
                 </thead>
@@ -136,6 +138,12 @@
                             @endif
                     </td>
                     <td><a style="color: #365bff" href="javascript:;" class="content_job" data-id="{{$v->id}}">添加/查看</a></td>
+                    <td>
+                        <a id="default-next-1" href="javascript:void(0);" class="button-next  btn btn-info" style="margin-left: 30px;padding-top: 0px;height: 23px;width: 45px;padding-left: 8px;">更改</a>
+                    </td>
+                    <td>
+                        <a id="default-next-1" href="javascript:void(0);" class="button-next  btn btn-info" style="margin-left: 30px;padding-top: 0px;height: 23px;width: 45px;padding-left: 8px;">更改</a>
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>
