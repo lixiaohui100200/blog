@@ -20,6 +20,18 @@
     <script src="/resources/views/student/style/js/html5shiv.js"></script>
     <script src="/resources/views/student/style/js/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .most-0 {
+            background:red;
+            color: #fff;
+            box-shadow: 0 5px 0 #60b193;
+        }
+        .most-2 {
+            background:yellow;
+            color: #fff;
+            box-shadow: 0 5px 0 #60b193;
+        }
+    </style>
 </head>
 
 <body class="sticky-header">
@@ -96,6 +108,7 @@
         <div class="wrapper">
 
             <div class="row">
+
                 <div class="col-sm-12">
 
                     <!--price start-->
@@ -104,7 +117,9 @@
                         <p>No risk. No hidden fees. Cancel at anytime. </p>
                     </div>--}}
                     <div class="col-lg-3 col-sm-3" style="left: 89px;">
-                        <div class="pricing-table" style="height: 485px;">
+                        <form action="{{url('student/job_message')}}" method="post">
+                            {{csrf_field()}}
+                        <div class="pricing-table most-0" style="height: 485px;">
                             <div class="pricing-head">
                                 <h1> Basic </h1>
 
@@ -113,17 +128,28 @@
                                 未就业
                             </div>
                             <ul class="list-unstyled">
-                                <li>24/7 Tech Support</li>
+                                <li><div>
+                                        <select name="class_id" style="width: 82px" >
+                                            <option value="哒哒哒">选择班级</option>
+                                            @foreach($data as $v)
+                                            <option value="{{$v->class_id}}">{{$v->class_name}}</option>
+                                                @endforeach
+                                        </select>
+                                        <input type="hidden" name="type" value="0">
+                                    </div></li>
                                 <li>Advanced Options</li>
 
                             </ul>
                             <div class="price-actions">
-                                <a href="{{url('student/job/0').'/'.$class_id}}" class="btn">点击进入</a>
+                                <button type="button"  class="btn1 btn-primary">提交</button>
                             </div>
                         </div>
+                        </form>
                     </div>
                     <div class="col-lg-3 col-sm-3" style="left: 120px;">
-                        <div class="pricing-table" style="height: 485px;">
+                        <form action="{{url('student/job_message')}}" method="post">
+                            {{csrf_field()}}
+                        <div class="pricing-table most-2" style="height: 485px;">
                             <div class="pricing-head">
                                 <h1> starter </h1>
 
@@ -132,15 +158,24 @@
                                本周入职
                             </div>
                             <ul class="list-unstyled">
-                                <li>100GB Storage</li>
+                                <li><select name="class_id" style="width: 82px" >
+                                        <option value="哒哒哒">选择班级</option>
+                                        @foreach($data as $v)
+                                        <option value="{{$v->class_id}}">{{$v->class_name}}</option>
+                                            @endforeach
+                                    </select></li>
+                                <input type="hidden" name="type" value="1">
                                 <li>1GB Bandwidth</li>
                             </ul>
                             <div class="price-actions">
-                                <a href="javascript:;" class="btn">get it now</a>
+                                <button type="button"  class="btn2 btn-primary">提交</button>
                             </div>
                         </div>
+                        </form>
                     </div>
                     <div class="col-lg-3 col-sm-3" style="left: 150px;">
+                        <form action="{{url('student/job_message')}}" method="post">
+                            {{csrf_field()}}
                         <div class="pricing-table most-popular" style="height: 485px;">
                             <div class="pricing-head">
                                 <h1> Premium </h1>
@@ -150,18 +185,28 @@
                                 已就业
                             </div>
                             <ul class="list-unstyled">
-                                <li>100GB Storage</li>
+                                <li>
+                                    <select name="class_id" style="width: 82px" class="abcd">
+                                        <option  value="哒哒哒">选择班级</option>
+                                        @foreach($data as $v)
+                                        <option value="{{$v->class_id}}">{{$v->class_name}}</option>
+                                            @endforeach
+                                    </select>
+                                    <input type="hidden" name="type" value="2">
+                                </li>
                                 <li>1GB Bandwidth</li>
                             </ul>
                             <div class="price-actions">
-                                <a href="javascript:;" class="btn">get it now</a>
+                                <button type="button"  class="btn btn-primary">提交</button>
                             </div>
                         </div>
+                        </form>
                     </div>
 
 
                     <!--price end-->
                 </div>
+
             </div>
 
         </div>
@@ -200,7 +245,10 @@
     jQuery(document).ready(function() {
         EditableTable.init();
     });
+    $(function () {
+        $
 
+    })
 </script>
 
 </body>

@@ -10,19 +10,44 @@ use Illuminate\Support\Facades\Input;
 class JobController extends Controller
 {
     //就业模块
-    public function index($class_id)
+    public function index()
     {
-        return view('student.job.index',compact('class_id'));
-    }
-    //未就业
-    public function job_n($job_type,$class_id)
-    {
-        $data = DB::table('student')
-            ->where('job_type',$job_type)
-            ->where('class_id',$class_id)
-            ->select('id','name','tel','qq','job_type')
+        $data = DB::table('stu_class')
+            ->select('class_id','class_name')
             ->get();
-        return view('student.job.job_n',compact('data'));
+        return view('student.job.index',compact('data'));
+    }
+    //展示未就业、本周入职、已就业信息
+    public function job_n()
+    {
+        $input = Input::except('_token');
+        $class_id = $input['class_id'];
+        $job_type = $input['type'];
+        if($job_type == 0){
+            $data = DB::table('student')
+                ->where('job_type',$job_type)
+                ->where('class_id',$class_id)
+                ->select('id','name','tel','qq','job_type')
+                ->get();
+            return view('student.job.job_n',compact('data'));
+        }elseif($job_type ==1){
+            $data = DB::table('student')
+                ->where('job_type',$job_type)
+                ->where('class_id',$class_id)
+                ->LeftJoin('stu_entry','student.id','=','stu_entry.stu_id')
+                ->select('student.id','student.name','student.job_type','stu_entry.*')
+                ->get();
+            return view('student.job.job_z',compact('data'));
+        }elseif ($job_type == 2){
+            $data = DB::table('student')
+                ->where('job_type',$job_type)
+                ->where('class_id',$class_id)
+                ->LeftJoin('stu_entry','student.id','=','stu_entry.stu_id')
+                ->select('student.id','student.name','student.job_type','stu_entry.*')
+                ->get();
+            return view('student.job.job_y',compact('data'));
+        }
+
     }
 
     public function record($stu_id)
@@ -90,4 +115,5 @@ class JobController extends Controller
             }
         }
     }
+
 }

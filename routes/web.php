@@ -118,10 +118,11 @@ Route::any('student/addClass','Student\ClassController@add');
 Route::any('student/listClass','Student\ClassController@lst');
 //显示班级下的学员详细信息
 Route::any('student/stuList/{class_id}','Student\StudentController@showStudent');
-//就业信息
+//展示界面入口为是就业 未就业 本周入职
 Route::any('student/job/{class_id}','Student\JobController@index');
-//未就业
-Route::any('student/job/{job_type}/{class_id}','Student\JobController@job_n');
+Route::any('student/job','Student\JobController@index');
+//展示为未就业、本周入职、已就业学员信息
+Route::any('student/job_message','Student\JobController@job_n');
 //记录页
 Route::any('student/record/{stu_id}','Student\JobController@record');
 //添加跟踪内容
@@ -130,3 +131,5 @@ Route::any('student/record_content','Student\JobController@add_record');
 Route::any('student/record_revamp','Student\JobController@revamp_z');
 //修改未就业为已就业
 Route::any('student/record_revamp_y','Student\JobController@revamp_y');
+
+
