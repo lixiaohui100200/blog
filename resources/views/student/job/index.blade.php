@@ -117,8 +117,6 @@
                         <p>No risk. No hidden fees. Cancel at anytime. </p>
                     </div>--}}
                     <div class="col-lg-3 col-sm-3" style="left: 89px;">
-                        <form action="{{url('student/job_message')}}" method="post">
-                            {{csrf_field()}}
                         <div class="pricing-table most-0" style="height: 485px;">
                             <div class="pricing-head">
                                 <h1> Basic </h1>
@@ -129,26 +127,22 @@
                             </div>
                             <ul class="list-unstyled">
                                 <li><div>
-                                        <select name="class_id" style="width: 82px" >
-                                            <option value="哒哒哒">选择班级</option>
+                                        <select name="class_id" class="class_one" style="width: 82px" >
+                                            <option value="111">选择班级</option>
                                             @foreach($data as $v)
                                             <option value="{{$v->class_id}}">{{$v->class_name}}</option>
                                                 @endforeach
                                         </select>
-                                        <input type="hidden" name="type" value="0">
                                     </div></li>
                                 <li>Advanced Options</li>
 
                             </ul>
                             <div class="price-actions">
-                                <button type="button"  class="btn1 btn-primary">提交</button>
+                                <button type="button" id="btn_one" class="btn btn-primary">提交</button>
                             </div>
                         </div>
-                        </form>
                     </div>
                     <div class="col-lg-3 col-sm-3" style="left: 120px;">
-                        <form action="{{url('student/job_message')}}" method="post">
-                            {{csrf_field()}}
                         <div class="pricing-table most-2" style="height: 485px;">
                             <div class="pricing-head">
                                 <h1> starter </h1>
@@ -158,8 +152,8 @@
                                本周入职
                             </div>
                             <ul class="list-unstyled">
-                                <li><select name="class_id" style="width: 82px" >
-                                        <option value="哒哒哒">选择班级</option>
+                                <li><select name="class_id" class="class_two" style="width: 82px" >
+                                        <option value="222">选择班级</option>
                                         @foreach($data as $v)
                                         <option value="{{$v->class_id}}">{{$v->class_name}}</option>
                                             @endforeach
@@ -168,14 +162,11 @@
                                 <li>1GB Bandwidth</li>
                             </ul>
                             <div class="price-actions">
-                                <button type="button"  class="btn2 btn-primary">提交</button>
+                                <button type="button"  id="btn_two" class="btn btn-primary">提交</button>
                             </div>
                         </div>
-                        </form>
                     </div>
                     <div class="col-lg-3 col-sm-3" style="left: 150px;">
-                        <form action="{{url('student/job_message')}}" method="post">
-                            {{csrf_field()}}
                         <div class="pricing-table most-popular" style="height: 485px;">
                             <div class="pricing-head">
                                 <h1> Premium </h1>
@@ -186,8 +177,8 @@
                             </div>
                             <ul class="list-unstyled">
                                 <li>
-                                    <select name="class_id" style="width: 82px" class="abcd">
-                                        <option  value="哒哒哒">选择班级</option>
+                                    <select name="class_id" class="class_three" style="width: 82px" class="abcd">
+                                        <option  value="333">选择班级</option>
                                         @foreach($data as $v)
                                         <option value="{{$v->class_id}}">{{$v->class_name}}</option>
                                             @endforeach
@@ -197,10 +188,9 @@
                                 <li>1GB Bandwidth</li>
                             </ul>
                             <div class="price-actions">
-                                <button type="button"  class="btn btn-primary">提交</button>
+                                <button type="button" id="btn_three" class="btn btn-primary">提交</button>
                             </div>
                         </div>
-                        </form>
                     </div>
 
 
@@ -229,6 +219,7 @@
 <script src="/resources/views/student/style/js/bootstrap.min.js"></script>
 <script src="/resources/views/student/style/js/modernizr.min.js"></script>
 <script src="/resources/views/student/style/js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="/resources/org/layer/layer.js"></script>
 
 <!--data table-->
 <script type="text/javascript" src="/resources/views/student/style/js/data-tables/jquery.dataTables.js"></script>
@@ -246,9 +237,43 @@
         EditableTable.init();
     });
     $(function () {
-        $
+        $('#btn_one').click(function () {
+            var data1 = $('.class_one').val();
+            if (data1 ==111){
+                layer.alert('请选择班级', {
+                    icon: 5,
+                });
+                return;
+            }
+            location.href = '{{url('student/job_message/0').'/'}}'+data1;
+
+        })
+        $('#btn_two').click(function () {
+            var data1 = $('.class_two').val();
+            if (data1 ==222){
+                layer.alert('请选择班级', {
+                    icon: 5,
+                });
+                return;
+            }
+            location.href = '{{url('student/job_message/1').'/'}}'+data1;
+
+        })
+        $('#btn_three').click(function () {
+            var data1 = $('.class_three').val();
+            if (data1 ==333){
+                layer.alert('请选择班级', {
+                    icon: 5,
+                });
+                return;
+            }
+            location.href = '{{url('student/job_message/2').'/'}}'+data1;
+
+        })
 
     })
+
+
 </script>
 
 </body>

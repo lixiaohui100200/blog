@@ -18,11 +18,8 @@ class JobController extends Controller
         return view('student.job.index',compact('data'));
     }
     //展示未就业、本周入职、已就业信息
-    public function job_n()
+    public function job_n($job_type,$class_id)
     {
-        $input = Input::except('_token');
-        $class_id = $input['class_id'];
-        $job_type = $input['type'];
         if($job_type == 0){
             $data = DB::table('student')
                 ->where('job_type',$job_type)
