@@ -112,5 +112,35 @@ class JobController extends Controller
             }
         }
     }
+    //记录页（本周入职）
+    public function record_z($stu_id)
+    {
 
+        if ($input = Input::except('_token')){
+            $input['record_user'] = '李晓辉';//放session
+            $input['add_time'] = date('Y-m-d');
+            $input['stu_id'] = $stu_id;
+            $res = DB::table('stu_entry')
+                ->where('stu_id',$stu_id)
+                ->first();
+
+            if ($res==''){
+                DB::table('stu_entry')
+                    ->insert($input);
+            }else{
+                DB::table('stu_entry')
+                    ->where('stu_id',$stu_id)
+                    ->update($input);
+            }
+        }
+        $en  = DB::table('stu_entry')
+            ->where('stu_id',$stu_id)
+            ->first();
+
+        $data = DB::table('student')
+            ->where('id',$stu_id)
+            ->select('student.id','student.name')
+            ->get();
+        return view('student.job.record_z',compact('data','en'));
+    }
 }

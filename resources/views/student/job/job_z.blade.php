@@ -148,7 +148,7 @@
                     <td>{{$v->pay}}</td>
                     <td>{{$v->boon}}</td>
                     <td>{{$v->city}}</td>
-                    <td>{{$v->fillout_time}}</td>
+                    <td>{{$v->add_time}}</td>
                     <td>{{$v->record_user}}</td>
                     <td><a style="color: #365bff" href="javascript:;" class="content_job" data-id="{{$v->id}}">添加/查看</a></td>
                     <td>
@@ -207,8 +207,8 @@
                 title: '',
                 maxmin: true,
                 shadeClose: true, //点击遮罩关闭层
-                area : ['500px' , '700px'],
-                content: '{{url('student/record')}}/'+id
+                area : ['430px' , '580px'],
+                content: '{{url('student/record_z')}}/'+id
             });
         })
     $('.button-next2').click(function () {

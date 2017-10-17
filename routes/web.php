@@ -122,8 +122,10 @@ Route::any('student/stuList/{class_id}','Student\StudentController@showStudent')
 Route::any('student/job','Student\JobController@index');
 //展示为未就业、本周入职、已就业学员信息
 Route::any('student/job_message/{type}/{class_id}','Student\JobController@job_n');
-//记录页
+//记录页（未就业）
 Route::any('student/record/{stu_id}','Student\JobController@record');
+//修改页（本周入职）
+Route::any('student/record_z/{stu_id}','Student\JobController@record_z');
 //添加跟踪内容
 Route::any('student/record_content','Student\JobController@add_record');
 //修改未就业为本周入职
