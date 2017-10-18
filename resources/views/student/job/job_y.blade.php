@@ -203,7 +203,7 @@
                 title: '',
                 maxmin: true,
                 shadeClose: true, //点击遮罩关闭层
-                area : ['430' , '580px'],
+                area : ['430px' , '580px'],
                 content: '{{url('student/record_z')}}/'+id
             });
         })

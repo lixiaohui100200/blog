@@ -8516,7 +8516,7 @@
 	
 		/**
 		 * When rendering large numbers in the information element for the table
-		 * (i.e. "Showing 1 to 10 of 57 entries") DataTables will render large numbers
+		 * (i.e. "显示 1 to 10 of 57 entries") DataTables will render large numbers
 		 * to have a comma separator for the 'thousands' units (e.g. 1 million is
 		 * rendered as "1,000,000") to help readability for the end user. This
 		 * function will override the default method DataTables uses.
@@ -9275,7 +9275,7 @@
 			 * variables are all dynamically replaced as the table display updates, and 
 			 * can be freely moved or removed as the language requirements change.
 			 *  @type string
-			 *  @default Showing _START_ to _END_ of _TOTAL_ entries
+			 *  @default 显示 _START_ to _END_ of _TOTAL_ entries
 			 *  @dtopt Language
 			 * 
 			 *  @example
@@ -9287,14 +9287,14 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "显示 _START_ 至 _END_ 共 _TOTAL_ 条",
 		
 		
 			/**
 			 * Display information string for when the table is empty. Typically the 
 			 * format of this string should match sInfo.
 			 *  @type string
-			 *  @default Showing 0 to 0 of 0 entries
+			 *  @default 显示 0 to 0 of 0 entries
 			 *  @dtopt Language
 			 * 
 			 *  @example
@@ -9306,7 +9306,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "显示 0 至 0 共 0 条",
 		
 		
 			/**
@@ -10594,7 +10594,7 @@
 			"bFilter": null,
 			
 			/**
-			 * Table information element (the 'Showing x of y records' div) enable
+			 * Table information element (the '显示 x of y records' div) enable
 			 * flag.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
