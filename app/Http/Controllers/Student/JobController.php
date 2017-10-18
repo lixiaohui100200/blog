@@ -123,14 +123,21 @@ class JobController extends Controller
             $res = DB::table('stu_entry')
                 ->where('stu_id',$stu_id)
                 ->first();
-
             if ($res==''){
                 DB::table('stu_entry')
                     ->insert($input);
+                return $data = [
+                    'state'=> 200,
+                    'msg' => '就业信息添加成功'
+                ];
             }else{
                 DB::table('stu_entry')
                     ->where('stu_id',$stu_id)
                     ->update($input);
+                return $data = [
+                    'state'=> 201,
+                    'msg' => '就业信息更新成功'
+                ];
             }
         }
         $en  = DB::table('stu_entry')

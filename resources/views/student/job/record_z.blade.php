@@ -116,7 +116,18 @@
                 contentType:false,
                 processData:false,
                 success:function (data) {
-                    alert(234);
+                    if(data.state == 200){
+                        layer.msg(data.msg)
+                        setTimeout(function () {
+                            window.parent.location.reload()
+                        }, 2000)
+                    }
+                    if(data.state == 201){
+                        layer.msg(data.msg)
+                        setTimeout(function () {
+                            window.parent.location.reload()
+                        }, 2000)
+                    }
                 }
             })
         })
