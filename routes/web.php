@@ -132,6 +132,8 @@ Route::any('student/record_content','Student\JobController@add_record');
 Route::any('student/record_revamp','Student\JobController@revamp_z');
 //修改未就业为已就业
 Route::any('student/record_revamp_y','Student\JobController@revamp_y');
-//本周未记录学员
+//本周未记录和已经记录学员
 Route::any('student/no_record','Student\RecordController@index');
+//本周未记录学员列表
+Route::any('student/no_job_record/{type}/{xuan}/{class}/','Student\RecordController@no_job');
 

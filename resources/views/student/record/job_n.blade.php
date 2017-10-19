@@ -192,7 +192,10 @@
                 maxmin: true,
                 shadeClose: true, //点击遮罩关闭层
                 area : ['500px' , '700px'],
-                content: '{{url('student/record')}}/'+id
+                content: '{{url('student/record')}}/'+id,
+                end: function () {
+                    location.reload();
+                }
             });
         })
     $('.button-next').click(function () {

@@ -4,9 +4,9 @@
 -- http://yanue.net 
 --
 -- 主机: localhost
--- 生成日期: 2017 年  10 月 18 日 18:39
--- MySQL版本: 5.5.53-log
--- PHP 版本: 5.6.27
+-- 生成日期: 2017 年  10 月 19 日 21:45
+-- MySQL版本: 5.6.35
+-- PHP 版本: 5.6.30
 
 --
 -- 数据库: `blog`
@@ -249,15 +249,17 @@ CREATE TABLE `blog_stu_entry` (
   `city` varchar(10) DEFAULT NULL COMMENT '就业城市',
   `add_time` date DEFAULT NULL COMMENT '填写时间',
   PRIMARY KEY (`en_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 blog_stu_entry
 --
 
-INSERT INTO `blog_stu_entry` VALUES('1','896556','李晓辉','1','12','百度有限公司','2017-10-19','10000','五险一金','北京','2017-10-18');
+INSERT INTO `blog_stu_entry` VALUES('1','896556','李晓辉','1','12','北京百度有限公司','2017-10-19','10000','五险一金','北京','2017-10-18');
 INSERT INTO `blog_stu_entry` VALUES('2','893426','李晓辉','1','11','电商北京有限公司','2017-10-19','11000','五险一金','上海','2017-10-18');
 INSERT INTO `blog_stu_entry` VALUES('3','894691','李晓辉','1','23','上门帮电子商务（北京）有限公司','2017-10-29','11000','五险','北京','2017-10-18');
+INSERT INTO `blog_stu_entry` VALUES('4','880332','李晓辉','1','12','众享在线北京网络科技有限公司','2017-10-28','20000','五险一金','北京','2017-10-18');
+INSERT INTO `blog_stu_entry` VALUES('5','892825','李晓辉','1','12','上门帮电子商务北京有限公司','2017-10-12','10000','五险一金','北京','2017-10-18');
 --
 -- 表的结构blog_stu_record
 --
@@ -267,25 +269,35 @@ CREATE TABLE `blog_stu_record` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `stu_id` int(11) DEFAULT NULL COMMENT '学生id',
   `record` varchar(300) DEFAULT NULL COMMENT '跟踪内容',
-  `record_time` date DEFAULT NULL COMMENT '跟踪时间',
+  `record_time` datetime DEFAULT NULL COMMENT '跟踪时间',
   `record_user` varchar(20) DEFAULT NULL COMMENT '跟踪人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 blog_stu_record
 --
 
-INSERT INTO `blog_stu_record` VALUES('1','893426','真的不错还是可以的','2017-10-12','李晓辉');
-INSERT INTO `blog_stu_record` VALUES('2','893426','学生没有投简历，天天在家躺着，和傻子一样','2017-10-12','李晓辉');
-INSERT INTO `blog_stu_record` VALUES('3','893426','真不错，今天还投简历了','2017-10-12','李晓辉');
-INSERT INTO `blog_stu_record` VALUES('4','893426','今天还不错 ，啥也没干','2017-10-12','李晓辉');
-INSERT INTO `blog_stu_record` VALUES('5','893426','挺好的','2017-10-12','李晓辉');
-INSERT INTO `blog_stu_record` VALUES('6','893426','阿什顿发斯蒂芬','2017-10-12','李晓辉');
-INSERT INTO `blog_stu_record` VALUES('7','893426','而我','2017-10-12','李晓辉');
-INSERT INTO `blog_stu_record` VALUES('8','893426','sdf','2017-10-12','李晓辉');
-INSERT INTO `blog_stu_record` VALUES('9','896556','这个就是个傻子','2017-10-12','李晓辉');
-INSERT INTO `blog_stu_record` VALUES('10','10004','热儿童yuiU','2017-10-18','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('1','893426','真的不错还是可以的','2017-10-12 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('2','893426','学生没有投简历，天天在家躺着，和傻子一样','2017-10-12 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('3','893426','真不错，今天还投简历了','2017-10-12 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('4','893426','今天还不错 ，啥也没干','2017-10-12 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('5','893426','挺好的','2017-10-12 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('6','893426','阿什顿发斯蒂芬','2017-10-12 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('7','893426','而我','2017-10-09 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('8','893426','sdf','2017-10-12 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('9','896556','这个就是个傻子','2017-10-12 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('10','10004','热儿童yuiU','2017-10-03 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('11','893553','这就是个傻逼','2017-10-03 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('12','893553','这个傻逼擦','2017-10-19 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('13','894693','这个傻逼','2017-10-19 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('14','100004','但还是比','2017-10-19 00:00:00','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('15','894694','a爱的色放静安寺大家发老师看到发','2017-10-19 19:59:26','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('16','895391','真的不错','2017-10-19 20:58:07','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('17','893553','哈哈不错','2017-10-19 20:58:36','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('18','894694','哈哈','2017-10-19 20:58:50','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('19','894719','真的不错，该学生不错','2017-10-19 21:07:30','李晓辉');
+INSERT INTO `blog_stu_record` VALUES('20','889940','这个就是傻子','2017-10-19 21:08:30','李晓辉');
 --
 -- 表的结构blog_student
 --
@@ -308,7 +320,7 @@ CREATE TABLE `blog_student` (
   `graduateTime` date DEFAULT NULL COMMENT '毕业时间',
   `age` int(100) DEFAULT NULL COMMENT '年龄',
   `class_id` int(10) DEFAULT NULL,
-  `job_type` int(1) DEFAULT '0',
+  `job_type` int(1) DEFAULT '0' COMMENT '是否工作，0没有，1待入职，2已入职',
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=899741 DEFAULT CHARSET=utf8;
@@ -317,8 +329,8 @@ CREATE TABLE `blog_student` (
 -- 转存表中的数据 blog_student
 --
 
-INSERT INTO `blog_student` VALUES('10001','路帅','男','130924199511080517','河北省沧州市海兴县高湾镇','北京市顺义区京顺路99号学生公寓2号楼4层437室','974018431','18332619078','转班来','本科','华北理工大学轻工学院','工程造价','宋岩婷','','22','11','0');
-INSERT INTO `blog_student` VALUES('10002','李新建','男','410181198102148513','巩义市','北京市顺义区京顺路99号学生公寓2号楼550室','358772182','13672007646','转班来','大专','天津外国语大学','英语','王波','','36','11','0');
+INSERT INTO `blog_student` VALUES('10001','路帅','男','130924199511080517','河北省沧州市海兴县高湾镇','北京市顺义区京顺路99号学生公寓2号楼4层437室','974018431','18332619078','转班来','本科','华北理工大学轻工学院','工程造价','宋岩婷','0000-00-00','22','11','0');
+INSERT INTO `blog_student` VALUES('10002','李新建','男','410181198102148513','巩义市','北京市顺义区京顺路99号学生公寓2号楼550室','358772182','13672007646','转班来','大专','天津外国语大学','英语','王波','0000-00-00','36','11','0');
 INSERT INTO `blog_student` VALUES('10003','余旺','男','429004199401164712','湖北省仙桃市张沟镇新华街19号','北京市顺义区京顺路99号学生公寓2号楼442号','513554911','18086406610','转班来','大专','中国地质大学江城学院','建筑工程技术','赵海燕','2014-06-01','23','11','0');
 INSERT INTO `blog_student` VALUES('10004','丁志超','男','220112199012222616','吉林省长春市','北京市顺义区京顺路99号学生公寓5号楼155','790850684','17778018001','升级','本科','通化师范学院','计算机科学与技术','程瑞玲','2013-07-10','27','11','2');
 INSERT INTO `blog_student` VALUES('10005','郝琦飞','男','142327199404222276','山西省吕梁市柳林县薛村镇港村','北京市顺义区京顺路99号学生公寓5号楼140','2649321248','17611039626','升级','本科','山西运城学院','网络工程','党梅','2018-07-01','23','11','0');
@@ -335,7 +347,7 @@ INSERT INTO `blog_student` VALUES('10015','张宏伟','男','141102199411270015'
 INSERT INTO `blog_student` VALUES('10016','黄鹤','女','150403199609050548','内蒙古赤峰市元宝山区元宝山镇三工村3-8-2','北京市顺义区京顺路99号学生公寓3号楼230','1322986884','17338117629','升级','本科','内蒙古科技大学','软件工程','吴昊','2018-07-01','21','11','0');
 INSERT INTO `blog_student` VALUES('10017','王丹','女','372922199703150026','山东省菏泽市曹县南关田油坊','北京市顺义区京顺路99号学生公寓3号楼230室','3165414831','18366083556','升级','大专','聊城职业技术学院','软件','刘雅','2018-07-07','20','11','0');
 INSERT INTO `blog_student` VALUES('10018','方浩然','男','412825199208112037','河南省上蔡县和店乡方庄村12957号','北京市顺义区京顺路99号学生公寓5栋401','1585853600','15801626453','升级','大专','河南经贸职业学院','计算机网络技术','李晓燕','2018-06-20','25','11','0');
-INSERT INTO `blog_student` VALUES('10019','武福厚','男','140621199007256110','山西省朔州市山阴县古城镇4区4排8号','北京市顺义区京顺路99号学生公寓5号楼401','352062112','13994947326','升级','大专','天津机电工艺学院','机械制造及其自动化','刘乐','','27','11','0');
+INSERT INTO `blog_student` VALUES('10019','武福厚','男','140621199007256110','山西省朔州市山阴县古城镇4区4排8号','北京市顺义区京顺路99号学生公寓5号楼401','352062112','13994947326','升级','大专','天津机电工艺学院','机械制造及其自动化','刘乐','0000-00-00','27','11','0');
 INSERT INTO `blog_student` VALUES('10020','杨念国','男','342222199506043658','安徽省宿州市萧县大屯镇许楼行政村许楼自然村304号','北京市顺义区京顺路99号学生公寓5号楼413','178800748','18865516282','升级','本科','烟台大学','金属材料工程','钮瑞清','2017-06-21','22','11','0');
 INSERT INTO `blog_student` VALUES('10021','张光应','男','342222199408123259','安徽省宿州市萧县赵庄镇桃园村','北京市顺义区京顺路99号学生公寓5号楼413室','786781353','13693313072','升级','本科','山东财经大学东方学院','电子商务','赵海燕','2016-07-08','23','11','0');
 INSERT INTO `blog_student` VALUES('10022','郭依蒙','女','37132419950710112X','山东省兰陵县刘岗子村138号','北京市顺义区京顺路99号学生公寓5栋135','1073155611','17610976780','升级','本科','鲁东大学','计算机科学与技术','邵孟雪','2017-07-01','22','11','0');

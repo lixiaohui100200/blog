@@ -69,7 +69,7 @@
                                     <h4>跟踪进度</h4>
                                     <hr style="margin-top: 6px;margin-bottom: 5px;">
                                     <div>{{$va->record}}</div>
-                                    <span style="font-size: 4px;padding-left: 305px;">{{$va->record_user}}&nbsp;:&nbsp;{{$va->record_time}}</span>
+                                    <span style="font-size: 4px;padding-left: 279px;">{{$va->record_user}}&nbsp;:&nbsp;{{$va->record_time}}</span>
                                 </div>
                             </div>
                         </div>

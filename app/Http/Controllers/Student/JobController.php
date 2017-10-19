@@ -71,7 +71,7 @@ class JobController extends Controller
                 ];
             }
             $input['record_user'] = '李晓辉';
-            $input['record_time'] = date('Y-m-d');
+            $input['record_time'] = date('Y-m-d H:i:s');
             $res = DB::table('stu_record')
                 ->insert($input);
             if ($res){

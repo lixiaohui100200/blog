@@ -14,7 +14,7 @@
 
     <link href="/resources/views/student/style/css/style.css" rel="stylesheet">
     <link href="/resources/views/student/style/css/style-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://127.0.0.1/resources/views/admin/style/css/layer.css">
+    <link rel="stylesheet" href="/resources/views/admin/style/css/layer.css">
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -22,18 +22,6 @@
     <script src="/resources/views/student/style/js/html5shiv.js"></script>
     <script src="/resources/views/student/style/js/respond.min.js"></script>
     <![endif]-->
-    <style>
-        .most-0 {
-            background:red;
-            color: #fff;
-            box-shadow: 0 5px 0 #60b193;
-        }
-        .most-2 {
-            background:yellow;
-            color: #fff;
-            box-shadow: 0 5px 0 #60b193;
-        }
-    </style>
 </head>
 
 <body class="sticky-header">
@@ -114,19 +102,16 @@
                 <div class="col-sm-12" style="width: 300px;left: 45px">
                     <ul style="list-style-type: none">
                         <li><img src="/resources/views/student/style/images/blog/image2.jpg" style="width: 300px"></li>
-                        <li><select name="class_id" class="class_three" style="width: 82px;margin-left: 105px;margin-top: 16px;" class="abcd">
+                        <li><select name="class_id" class="class_one" style="width: 82px;margin-left: 105px;margin-top: 16px;" class="abcd">
                                 <option  value="333">选择班级</option>
-
-                                <option value="1">21</option>
-                                <option value="1">21</option>
-                                <option value="1">21</option>
-                                <option value="1">21</option>
-
+                                @foreach($data as $v)
+                                <option value="{{$v->class_id}}">{{$v->class_name}}</option>
+                                @endforeach
                             </select>
                         </li>
                         <li>
                                 <div style="width: 82px;margin-left: 100px;margin-top: 16px;">
-                                    <button class="layui-btn layui-btn-normal layui-btn-radius">百搭按钮</button>
+                                    <button id="btn1" class="layui-btn layui-btn-normal layui-btn-radius">本周未记录</button>
                                 </div>
 
                         </li>
@@ -136,19 +121,16 @@
                 <div class="col-sm-12"  style="width: 300px;left: 124px;">
                     <ul style="list-style-type: none">
                         <li><img src="/resources/views/student/style/images/blog/image2.jpg" style="width: 300px"></li>
-                        <li><select name="class_id" class="class_three" style="width: 82px;margin-left: 105px;margin-top: 16px;" class="abcd">
+                        <li><select name="class_id" class="class_two" style="width: 82px;margin-left: 105px;margin-top: 16px;" class="abcd">
                                 <option  value="333">选择班级</option>
-
-                                <option value="1">21</option>
-                                <option value="1">21</option>
-                                <option value="1">21</option>
-                                <option value="1">21</option>
-
+                                @foreach($data as $v)
+                                <option value="{{$v->class_id}}">{{$v->class_name}}</option>
+                                    @endforeach
                             </select>
                         </li>
                         <li>
                             <div style="width: 82px;margin-left: 100px;margin-top: 16px;">
-                                <button class="layui-btn layui-btn-normal layui-btn-radius">百搭按钮</button>
+                                <button id='btn2' class="layui-btn layui-btn-normal layui-btn-radius">本周已记录</button>
                             </div>
 
                         </li>
@@ -195,6 +177,32 @@
     jQuery(document).ready(function() {
         EditableTable.init();
     });
+    $(function () {
+        $('#btn1').click(function () {
+            var va1 = $('.class_one').val();
+            if(va1 == 333){
+                layer.alert('请输入班级',{
+                    icon:5
+                })
+                return;
+            }
+            location.href = '{{url('student/no_job_record/0/0').'/'}}'+va1;
+
+        })
+        $('#btn2').click(function () {
+            var va1 = $('.class_two').val();
+            if(va1 == 333){
+                layer.alert('请输入班级',{
+                    icon:5
+                })
+                return;
+            }
+            location.href = '{{url('student/no_job_record/0/1').'/'}}'+va1;
+
+        })
+
+
+    })
 </script>
 
 </body>
