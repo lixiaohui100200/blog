@@ -11,12 +11,6 @@ class RecordController extends Controller
     //本周未记录学员信息
     public function index()
     {
-
-        /*if ($date1<=$date3 && $date3<=$date2){
-            echo 1;
-        }else{
-            echo 2;
-        }*/
         $data = DB::table('stu_class')
             ->where('show',1)
             ->select('class_id','class_name')
