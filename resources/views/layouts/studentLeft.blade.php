@@ -5,4 +5,5 @@
     <li class="active"><a href="{{url('student/listClass')}}"><i class="fa fa-home"></i> <span>班级分类列表</span></a></li>
     <li class="active"><a href="{{url('student/job')}}"><i class="fa fa-home"></i> <span>就业情况</span></a></li>
     <li class="active"><a href="{{url('student/no_record')}}"><i class="fa fa-home"></i> <span>本周未记录学员</span></a></li>
+    <li class="active"><a href="{{url('student/group')}}"><i class="fa fa-home"></i> <span>将学生分组</span></a></li>
 </ul>

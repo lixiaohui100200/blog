@@ -136,4 +136,8 @@ Route::any('student/record_revamp_y','Student\JobController@revamp_y');
 Route::any('student/no_record','Student\RecordController@index');
 //本周未记录学员列表
 Route::any('student/no_job_record/{type}/{xuan}/{class}/','Student\RecordController@no_job');
+//将学生分给用户
+Route::any('student/group','Student\GroupController@index');
+//学生分组主页
+Route::any('student/group_index/{class_id}','Student\GroupController@group');
 
