@@ -130,12 +130,12 @@
                         <div class="panel-body">
                         <form action="#" class="form-horizontal ">
                             <div class="form-group last">
-                                <label class="control-label col-md-3">Searchable</label>
+                                <label class="control-label col-md-3">添加学生到分组</label>
                                 <div class="col-md-9">
                                 <select name="country" class="multi-select" multiple="" id="my_multi_select3">
-                            <option value="AF">李晓辉</option>
-                            <option value="Ab">张伯伦</option>
-                            <option value="Ac">曹雨薇</option>
+                                    @foreach($data as $v)
+                                        <option value="{{$v->id}}">{{$v->name}}</option>
+                                    @endforeach
                             </select>
                             </div>
 
@@ -180,6 +180,16 @@
 
 <!--common scripts for all pages-->
 <script src="/resources/views/student/style/js/scripts.js"></script>
+<script>
+    $(function () {
+        $(document).click(function (e) {
+            var v_id = $(e.target).attr('id');
+            $.ajax({
+                url:
+            })
+        })
 
+    })
+</script>
 </body>
 </html>

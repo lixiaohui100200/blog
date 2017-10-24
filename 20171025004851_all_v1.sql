@@ -4,7 +4,7 @@
 -- http://yanue.net 
 --
 -- 主机: localhost
--- 生成日期: 2017 年  10 月 24 日 00:37
+-- 生成日期: 2017 年  10 月 25 日 00:48
 -- MySQL版本: 5.6.35
 -- PHP 版本: 5.6.30
 
@@ -275,12 +275,14 @@ CREATE TABLE `blog_stu_group` (
   `class_id` int(20) DEFAULT NULL COMMENT '分类的id',
   `show` int(1) DEFAULT '0' COMMENT '是否显示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 blog_stu_group
 --
 
+INSERT INTO `blog_stu_group` VALUES('1','1',',833278,864067','1','0');
+INSERT INTO `blog_stu_group` VALUES('2','2',',19196,884550','1','0');
 --
 -- 表的结构blog_stu_record
 --

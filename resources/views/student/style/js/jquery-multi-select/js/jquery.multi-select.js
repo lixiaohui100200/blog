@@ -110,7 +110,7 @@
           attributes += attr.name+'="'+attr.value+'" ';
         }
       }
-      var selectableLi = $('<li '+attributes+'><span>'+$option.text()+'</span></li>'),
+      var selectableLi = $('<li '+attributes+'>'+$option.text()+'</li>'),
           selectedLi = selectableLi.clone(),
           value = $option.val(),
           elementId = that.sanitize(value, that.sanitizeRegexp);
