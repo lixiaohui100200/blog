@@ -134,7 +134,10 @@
                                 <div class="col-md-9">
                                 <select name="country" class="multi-select" multiple="" id="my_multi_select3">
                                     @foreach($data as $v)
-                                        <option value="{{$v->id}}">{{$v->name}}</option>
+                                        @if($v->id !='abcd')
+                                            <option value="{{$v->id}}">{{$v->name}}</option>
+                                            @endif
+
                                     @endforeach
                             </select>
                             </div>
@@ -184,9 +187,25 @@
     $(function () {
         $(document).click(function (e) {
             var v_id = $(e.target).attr('id');
-            $.ajax({
-                url:
-            })
+            if (v_id !=undefined){
+                var i = v_id.indexOf('-')
+                var str = v_id.substring(i,v_id.length)
+                if (str =='-selectable'){
+                    $.ajax({
+                        url:'{{url('student/group_index').'/'.$v->class_id}}',
+                        type:'post',
+                        data:{id:v_id,_token:"{{csrf_token()}}"},
+                    })
+                }
+                if(str=='-selection'){
+                    $.ajax({
+                        url:'{{url('student/group_del').'/'.$v->class_id}}',
+                        type:'post',
+                        data:{id:v_id,_token:"{{csrf_token()}}"},
+                    })
+                }
+            }
+
         })
 
     })

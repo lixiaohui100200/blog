@@ -138,6 +138,7 @@ Route::any('student/no_record','Student\RecordController@index');
 Route::any('student/no_job_record/{type}/{xuan}/{class}/','Student\RecordController@no_job');
 //将学生分给用户
 Route::any('student/group','Student\GroupController@index');
-//学生分组主页
+//学生分组主页并增加到用户分组
 Route::any('student/group_index/{class_id}','Student\GroupController@group');
-
+//删除在分组中的学员
+Route::any('student/group_del/{class_id}','Student\GroupController@group_del');
